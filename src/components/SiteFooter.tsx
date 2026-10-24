@@ -164,6 +164,18 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
               </li>
               <li>
                 <a
+                  href="/demo/"
+                  onClick={(e) => handleLinkClick(e, '/demo/')}
+                  className="text-orange-400 hover:text-orange-300 font-semibold transition-colors flex items-center justify-between"
+                >
+                  <span>Software Demo</span>
+                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30 uppercase">
+                    Preview
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
                   href="/services/"
                   onClick={(e) => handleLinkClick(e, '/services/')}
                   className="text-slate-300 hover:text-white transition-colors"

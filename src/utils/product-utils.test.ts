@@ -179,3 +179,43 @@ test('HARDWARE_PRODUCTS_DATA contains verified DCN and Heat Controller specs', a
   // Verify FAQs
   assert.equal(HARDWARE_FAQS.length >= 7, true);
 });
+
+test('DEMO_GALLERY_SECTIONS contains all 4 required sections and verified screenshots', async () => {
+  const { DEMO_GALLERY_SECTIONS } = await import('../data/demo-screenshots');
+  
+  assert.equal(DEMO_GALLERY_SECTIONS.length, 4);
+
+  const sectionIds = DEMO_GALLERY_SECTIONS.map(s => s.id);
+  assert.deepEqual(sectionIds, [
+    'live-monitoring',
+    'batch-management',
+    'temperature-graphs',
+    'telemetry-reports'
+  ]);
+
+  // Total distinct screenshots across sections
+  const totalScreenshots = DEMO_GALLERY_SECTIONS.reduce((acc, s) => acc + s.items.length, 0);
+  assert.equal(totalScreenshots >= 10, true);
+
+  // Check section A: Live Monitoring
+  const secA = DEMO_GALLERY_SECTIONS.find(s => s.id === 'live-monitoring')!;
+  assert.ok(secA.items.some(i => i.imagePath.includes('dashboard01')));
+  assert.ok(secA.items.some(i => i.imagePath.includes('dashboard02')));
+  assert.ok(secA.items.some(i => i.imagePath.includes('available_slave_dashboard')));
+
+  // Check section B: Batch Management
+  const secB = DEMO_GALLERY_SECTIONS.find(s => s.id === 'batch-management')!;
+  assert.ok(secB.items.some(i => i.imagePath.includes('running_batch')));
+  assert.ok(secB.items.some(i => i.imagePath.includes('running_slave_devices')));
+  assert.ok(secB.items.some(i => i.imagePath.includes('idle_slaves')));
+
+  // Check section C: Temperature Graphs
+  const secC = DEMO_GALLERY_SECTIONS.find(s => s.id === 'temperature-graphs')!;
+  assert.ok(secC.items.some(i => i.imagePath.includes('batch_Graph')));
+  assert.ok(secC.items.some(i => i.imagePath.includes('SinglePidGraph')));
+
+  // Check section D: Telemetry & Reports
+  const secD = DEMO_GALLERY_SECTIONS.find(s => s.id === 'telemetry-reports')!;
+  assert.ok(secD.items.some(i => i.imagePath.includes('reportSection')));
+  assert.ok(secD.items.some(i => i.imagePath.includes('report_logs')));
+});

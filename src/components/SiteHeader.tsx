@@ -90,7 +90,7 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
               }`}
             >
               Home
-              {isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact') && (
+              {isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/demo') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact') && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
               )}
             </a>
@@ -218,7 +218,23 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
               )}
             </div>
 
-            {/* 4. Services */}
+            {/* 4. Demo (Software Screenshots & Telemetry Gallery) */}
+            <a
+              href="/demo/"
+              onClick={(e) => handleLinkClick(e, '/demo/')}
+              className={`whitespace-nowrap transition-colors py-1 relative ${
+                isCurrent('/demo')
+                  ? 'text-orange-600 font-semibold'
+                  : 'text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              Demo
+              {isCurrent('/demo') && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+              )}
+            </a>
+
+            {/* 5. Services */}
             <a
               href="/services/"
               onClick={(e) => handleLinkClick(e, '/services/')}
@@ -369,6 +385,18 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
                 ))}
               </div>
             </div>
+
+            <a
+              href="/demo/"
+              onClick={(e) => handleLinkClick(e, '/demo/')}
+              className={`block px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
+                isCurrent('/demo')
+                  ? 'text-orange-600 bg-orange-50/70 font-bold'
+                  : 'text-slate-800 hover:bg-slate-50'
+              }`}
+            >
+              Demo
+            </a>
 
             <a
               href="/services/"

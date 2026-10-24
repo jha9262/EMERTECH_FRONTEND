@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { DcnHeatControllerPage } from './pages/DcnHeatControllerPage';
 import { HardwareSpecPage } from './pages/HardwareSpecPage';
+import { DemoPage } from './pages/DemoPage';
 import { SoftwarePage } from './pages/SoftwarePage';
 import { SoftwareDetailPage } from './pages/SoftwareDetailPage';
 import { SolutionsPage } from './pages/SolutionsPage';
@@ -68,6 +69,8 @@ export default function App() {
       }
     } else if (clean === '/solutions') {
       pageTitle = 'Industrial Solutions & Applications — Emertech Electronics';
+    } else if (clean === '/demo') {
+      pageTitle = 'Software Demo — See Industrial Monitoring in Action | Emertech Electronics';
     } else if (clean === '/services') {
       pageTitle = 'Industrial Engineering & Deployment Services — Emertech Electronics';
     } else if (clean === '/industries') {
@@ -161,6 +164,11 @@ export default function App() {
     // Solutions Route
     if (normalized === '/solutions') {
       return <SolutionsPage onNavigate={handleNavigate} />;
+    }
+
+    // Demo Route
+    if (normalized === '/demo') {
+      return <DemoPage onNavigate={handleNavigate} />;
     }
 
     // Services Route
