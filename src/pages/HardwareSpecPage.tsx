@@ -44,6 +44,7 @@ import { QuoteDrawer } from '../components/hardware/QuoteDrawer';
 import { CompareModal } from '../components/hardware/CompareModal';
 import { ConnectivityDiagram } from '../components/hardware/ConnectivityDiagram';
 import { ModelCodeBuilder } from '../components/hardware/ModelCodeBuilder';
+import { DcnHardwareVisual } from '../components/hardware/DcnHardwareVisual';
 import { SOFTWARE_PRODUCTS } from '../data/software';
 import { getSoftwareIcon } from '../components/IndustrialSoftwareIcons';
 
@@ -257,29 +258,22 @@ export function HardwareSpecPage({ onNavigate }: HardwareSpecPageProps) {
         id="overview"
         className="relative min-h-[85vh] flex flex-col justify-center bg-[#050816] text-white overflow-hidden pt-12 pb-16"
       >
-        {/* Background Image & Texture Overlay */}
+        {/* Clean Industrial Technical Grid & Ambient Lighting (No human/person photo) */}
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          className="absolute inset-0 pointer-events-none opacity-20"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=80')",
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 106, 0, 0.12) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 106, 0, 0.12) 1px, transparent 1px)
+            `,
+            backgroundSize: '36px 36px',
           }}
         />
-        {/* Dark Gradient Overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'linear-gradient(90deg, rgba(5,8,22,.97) 0%, rgba(5,8,22,.88) 45%, rgba(5,8,22,.50) 100%)',
-          }}
-        />
-        {/* Faint Dot Grid Texture */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-20"
-          style={{
-            backgroundImage:
-              'radial-gradient(rgba(255, 106, 0, 0.4) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
+              'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 106, 0, 0.16), transparent 75%)',
           }}
         />
 
