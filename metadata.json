@@ -1,0 +1,6 @@
+{
+  "name": "Emertech Electrical Systems",
+  "description": "Industrial hardware and software solutions company specializing in the DCN & Heat Controller platform and connected industrial IoT software suites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
