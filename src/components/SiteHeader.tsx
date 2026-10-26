@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Cpu, ArrowRight } from 'lucide-react';
-import { SOFTWARE_PRODUCTS } from '../data/software';
-import { getSoftwareIcon } from './IndustrialSoftwareIcons';
+import { Search, ChevronDown, X, Menu } from 'lucide-react';
+import { MegaMenu, MegaMenuType } from './MegaMenu';
 
 interface SiteHeaderProps {
   currentPath?: string;
@@ -9,37 +8,58 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
+  const [activeMegaMenu, setActiveMegaMenu] = useState<MegaMenuType>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const productsDropdownRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown when clicking outside
+  // Close mega menu when clicking outside or pressing Escape
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        productsDropdownRef.current &&
-        !productsDropdownRef.current.contains(event.target as Node)
-      ) {
-        setProductsDropdownOpen(false);
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setActiveMegaMenu(null);
       }
     }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setActiveMegaMenu(null);
+        setMobileMenuOpen(false);
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
+    setActiveMegaMenu(null);
     setMobileMenuOpen(false);
-    setProductsDropdownOpen(false);
 
     if (onNavigate) {
       onNavigate(path);
     } else {
       window.location.href = path;
     }
+  };
+
+  const handleMenuMouseEnter = (menuType: MegaMenuType) => {
+    if (menuTimeoutRef.current) {
+      clearTimeout(menuTimeoutRef.current);
+      menuTimeoutRef.current = null;
+    }
+    setActiveMegaMenu(menuType);
+  };
+
+  const handleMenuMouseLeave = () => {
+    menuTimeoutRef.current = setTimeout(() => {
+      setActiveMegaMenu(null);
+    }, 180);
   };
 
   const isCurrent = (path: string) => {
@@ -54,390 +74,362 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
     currentPath.startsWith('/products');
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-8">
-          {/* Brand Wordmark */}
-          <a
-            href="/"
-            onClick={(e) => handleLinkClick(e, '/')}
-            className="flex items-center space-x-3 group shrink-0"
-            aria-label="Emertech Electronics Home"
-          >
-            <div className="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-lg tracking-wider shadow-sm group-hover:bg-orange-500 transition-colors">
-              ET
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors uppercase">
-                EMERTECH
-              </span>
-              <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase -mt-1 font-mono">
-                ELECTRONICS
-              </span>
-            </div>
-          </a>
+    <header 
+      ref={headerRef}
+      className="sticky top-0 z-50 bg-[#050505] border-b border-[#41434A] transition-all duration-200"
+      onMouseLeave={handleMenuMouseLeave}
+    >
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[72px] gap-6">
+          {/* Left: Mobile/Drawer Toggle & Emertech Brand Logo */}
+          <div className="flex items-center space-x-4 sm:space-x-5">
+            {/* Minimal EPAM-style two-bar hamburger */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 text-white hover:text-[#00E5E5] transition-colors focus:outline-none focus:ring-1 focus:ring-[#00E5E5]"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-white" />
+              ) : (
+                <div className="w-5 flex flex-col space-y-1.5 py-1">
+                  <span className="block h-[2px] w-5 bg-white" />
+                  <span className="block h-[2px] w-3.5 bg-white" />
+                </div>
+              )}
+            </button>
 
-          {/* Desktop Navigation Links — Exact Order Requested */}
-          <nav className="hidden lg:flex items-center space-x-7 text-xs font-semibold tracking-wide">
+            {/* Emertech Brand Logo (Kept authentic & unchanged) */}
+            <a
+              href="/"
+              onClick={(e) => handleLinkClick(e, '/')}
+              className="flex items-center space-x-3 group shrink-0"
+              aria-label="Emertech Electronics Home"
+            >
+              <div className="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-base tracking-wider shadow-sm group-hover:bg-orange-500 transition-colors">
+                ET
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-extrabold tracking-tight text-white group-hover:text-[#00E5E5] transition-colors uppercase">
+                  EMERTECH
+                </span>
+                <span className="text-[10px] font-semibold tracking-wider text-[#969DAA] uppercase -mt-1 font-mono">
+                  ELECTRONICS
+                </span>
+              </div>
+            </a>
+          </div>
+
+          {/* Desktop Navigation Links — Exact Order Requested: Home, Products, Services, Solutions, Demo, Industries, About Us, Contact */}
+          <nav className="hidden lg:flex items-center space-x-8 text-[13px] font-medium tracking-wide">
             {/* 1. Home */}
             <a
               href="/"
               onClick={(e) => handleLinkClick(e, '/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
-                isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              className={`whitespace-nowrap transition-colors py-2 relative ${
+                isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/products') && !currentPath.startsWith('/demo') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact')
+                  ? 'text-[#00E5E5] font-semibold'
+                  : 'text-[#F5F5F7] hover:text-[#00E5E5]'
               }`}
             >
               Home
-              {isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/demo') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+              {isCurrent('/') && !currentPath.startsWith('/solutions') && !currentPath.startsWith('/hardware') && !currentPath.startsWith('/software') && !currentPath.startsWith('/products') && !currentPath.startsWith('/demo') && !currentPath.startsWith('/services') && !currentPath.startsWith('/industries') && !currentPath.startsWith('/about') && !currentPath.startsWith('/contact') && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
               )}
             </a>
 
-            {/* 2. Solutions */}
-            <a
-              href="/solutions/"
-              onClick={(e) => handleLinkClick(e, '/solutions/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
-                isCurrent('/solutions')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
-              }`}
-            >
-              Solutions
-              {isCurrent('/solutions') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
-              )}
-            </a>
-
-            {/* 3. Products with Dropdown (Hardware & Software) */}
-            <div
-              className="relative"
-              ref={productsDropdownRef}
-              onMouseEnter={() => setProductsDropdownOpen(true)}
-              onMouseLeave={() => setProductsDropdownOpen(false)}
-            >
+            {/* 2. Products (Mega Menu Trigger) */}
+            <div className="relative">
               <button
                 type="button"
-                onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                className={`flex items-center space-x-1 whitespace-nowrap transition-colors py-1 relative cursor-pointer ${
-                  isProductsActive
-                    ? 'text-orange-600 font-semibold'
-                    : 'text-slate-700 hover:text-slate-900'
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'products' ? null : 'products')}
+                onMouseEnter={() => handleMenuMouseEnter('products')}
+                className={`flex items-center space-x-1 whitespace-nowrap transition-colors py-2 relative cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5] rounded px-1 ${
+                  isProductsActive || activeMegaMenu === 'products'
+                    ? 'text-[#00E5E5] font-semibold'
+                    : 'text-[#F5F5F7] hover:text-[#00E5E5]'
                 }`}
-                aria-expanded={productsDropdownOpen}
+                aria-expanded={activeMegaMenu === 'products'}
+                aria-haspopup="true"
               >
                 <span>Products</span>
-                <ChevronDown className="w-3.5 h-3.5 mt-0.5 transition-transform duration-200" />
+                <ChevronDown className={`w-3.5 h-3.5 mt-0.5 transition-transform duration-200 ${activeMegaMenu === 'products' ? 'rotate-180 text-[#00E5E5]' : ''}`} />
                 {isProductsActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
                 )}
               </button>
-
-              {/* Products Dropdown Menu — Grouped Hardware & Software */}
-              {productsDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[620px] bg-white rounded-xl border border-slate-200 shadow-xl p-4 mt-1 z-50">
-                  <div className="grid grid-cols-12 gap-5">
-                    {/* Hardware Column */}
-                    <div className="col-span-5 border-r border-slate-100 pr-4">
-                      <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold">
-                          Hardware
-                        </span>
-                        <a
-                          href="/hardware/specification/"
-                          onClick={(e) => handleLinkClick(e, '/hardware/specification/')}
-                          className="text-[10px] text-slate-500 hover:text-orange-600 font-medium"
-                        >
-                          Specs &amp; Datasheet →
-                        </a>
-                      </div>
-
-                      <a
-                        href="/hardware/"
-                        onClick={(e) => handleLinkClick(e, '/hardware/')}
-                        className="block p-3 rounded-lg hover:bg-slate-50 transition-colors border border-slate-100 group"
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mb-2">
-                          <Cpu className="w-4 h-4" />
-                        </div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
-                          DCN &amp; Heat Controller
-                        </div>
-                        <div className="text-[11px] text-slate-500 mt-1 leading-snug">
-                          Dual-core ESP32 edge processing with 4-zone relay control for heating blankets.
-                        </div>
-                        <div className="text-[10px] font-mono text-orange-600 font-medium mt-2 flex items-center">
-                          <span>View Hardware Specs &amp; Datasheet</span>
-                          <ArrowRight className="w-3 h-3 ml-1" />
-                        </div>
-                      </a>
-                    </div>
-
-                    {/* Software Column (All 9 Modules) */}
-                    <div className="col-span-7">
-                      <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold">
-                          Software (9 Modules)
-                        </span>
-                        <a
-                          href="/software/"
-                          onClick={(e) => handleLinkClick(e, '/software/')}
-                          className="text-[10px] text-slate-500 hover:text-orange-600"
-                        >
-                          All Software →
-                        </a>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-1">
-                        {SOFTWARE_PRODUCTS.map((prod) => (
-                          <a
-                            key={prod.slug}
-                            href={prod.route}
-                            onClick={(e) => handleLinkClick(e, prod.route)}
-                            className="flex items-center space-x-2 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="w-6 h-6 rounded bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
-                              {getSoftwareIcon(prod.slug, 'w-3.5 h-3.5')}
-                            </div>
-                            <div className="min-w-0">
-                              <div className="text-xs font-bold text-slate-900 group-hover:text-orange-600 transition-colors truncate">
-                                {prod.name}
-                              </div>
-                              <div className="text-[10px] text-slate-500 truncate lowercase font-normal">
-                                {prod.purpose}
-                              </div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
 
-            {/* 4. Demo (Software Screenshots & Telemetry Gallery) */}
+            {/* 3. Services (Mega Menu Trigger) */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'services' ? null : 'services')}
+                onMouseEnter={() => handleMenuMouseEnter('services')}
+                className={`flex items-center space-x-1 whitespace-nowrap transition-colors py-2 relative cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5] rounded px-1 ${
+                  isCurrent('/services') || activeMegaMenu === 'services'
+                    ? 'text-[#00E5E5] font-semibold'
+                    : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+                }`}
+                aria-expanded={activeMegaMenu === 'services'}
+                aria-haspopup="true"
+              >
+                <span>Services</span>
+                <ChevronDown className={`w-3.5 h-3.5 mt-0.5 transition-transform duration-200 ${activeMegaMenu === 'services' ? 'rotate-180 text-[#00E5E5]' : ''}`} />
+                {isCurrent('/services') && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
+                )}
+              </button>
+            </div>
+
+            {/* 4. Solutions (Mega Menu Trigger) */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'solutions' ? null : 'solutions')}
+                onMouseEnter={() => handleMenuMouseEnter('solutions')}
+                className={`flex items-center space-x-1 whitespace-nowrap transition-colors py-2 relative cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5] rounded px-1 ${
+                  isCurrent('/solutions') || activeMegaMenu === 'solutions'
+                    ? 'text-[#00E5E5] font-semibold'
+                    : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+                }`}
+                aria-expanded={activeMegaMenu === 'solutions'}
+                aria-haspopup="true"
+              >
+                <span>Solutions</span>
+                <ChevronDown className={`w-3.5 h-3.5 mt-0.5 transition-transform duration-200 ${activeMegaMenu === 'solutions' ? 'rotate-180 text-[#00E5E5]' : ''}`} />
+                {isCurrent('/solutions') && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
+                )}
+              </button>
+            </div>
+
+            {/* 5. Demo */}
             <a
               href="/demo/"
               onClick={(e) => handleLinkClick(e, '/demo/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              className={`whitespace-nowrap transition-colors py-2 relative ${
                 isCurrent('/demo')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
+                  ? 'text-[#00E5E5] font-semibold'
+                  : 'text-[#F5F5F7] hover:text-[#00E5E5]'
               }`}
             >
               Demo
               {isCurrent('/demo') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
               )}
             </a>
 
-            {/* 5. Services */}
-            <a
-              href="/services/"
-              onClick={(e) => handleLinkClick(e, '/services/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
-                isCurrent('/services')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
-              }`}
-            >
-              Services
-              {isCurrent('/services') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
-              )}
-            </a>
+            {/* 6. Industries (Mega Menu Trigger — Matches EPAM Reference Screenshot 1) */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'industries' ? null : 'industries')}
+                onMouseEnter={() => handleMenuMouseEnter('industries')}
+                className={`flex items-center space-x-1 whitespace-nowrap transition-colors py-2 relative cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5] rounded px-1 ${
+                  isCurrent('/industries') || activeMegaMenu === 'industries'
+                    ? 'text-[#00E5E5] font-semibold'
+                    : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+                }`}
+                aria-expanded={activeMegaMenu === 'industries'}
+                aria-haspopup="true"
+              >
+                <span>Industries</span>
+                <ChevronDown className={`w-3.5 h-3.5 mt-0.5 transition-transform duration-200 ${activeMegaMenu === 'industries' ? 'rotate-180 text-[#00E5E5]' : ''}`} />
+                {isCurrent('/industries') && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
+                )}
+              </button>
+            </div>
 
-            {/* 5. Industries */}
-            <a
-              href="/industries/"
-              onClick={(e) => handleLinkClick(e, '/industries/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
-                isCurrent('/industries')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
-              }`}
-            >
-              Industries
-              {isCurrent('/industries') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
-              )}
-            </a>
-
-            {/* 6. About Us */}
+            {/* 7. About Us */}
             <a
               href="/about/"
               onClick={(e) => handleLinkClick(e, '/about/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              className={`whitespace-nowrap transition-colors py-2 relative ${
                 isCurrent('/about')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
+                  ? 'text-[#00E5E5] font-semibold'
+                  : 'text-[#F5F5F7] hover:text-[#00E5E5]'
               }`}
             >
               About Us
               {isCurrent('/about') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
               )}
             </a>
 
-            {/* 7. Contact */}
+            {/* 8. Contact */}
             <a
               href="/contact/"
               onClick={(e) => handleLinkClick(e, '/contact/')}
-              className={`whitespace-nowrap transition-colors py-1 relative ${
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              className={`whitespace-nowrap transition-colors py-2 relative ${
                 isCurrent('/contact')
-                  ? 'text-orange-600 font-semibold'
-                  : 'text-slate-700 hover:text-slate-900'
+                  ? 'text-[#00E5E5] font-semibold'
+                  : 'text-[#F5F5F7] hover:text-[#00E5E5]'
               }`}
             >
               Contact
               {isCurrent('/contact') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00E5E5]" />
               )}
             </a>
           </nav>
 
-          {/* 8. Primary CTA: Request a Quote */}
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <a
-              href="/contact/"
-              onClick={(e) => handleLinkClick(e, '/contact/')}
-              className="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 active:bg-orange-700 rounded-lg transition-colors whitespace-nowrap shadow-sm"
+          {/* Right Controls: EPAM-style Theme Pill & Search Icon (No Request a Quote button) */}
+          <div className="flex items-center space-x-4 shrink-0">
+            {/* Visual EPAM theme pill indicator */}
+            <div 
+              className="hidden sm:flex items-center w-11 h-6 rounded-full border border-[#41434A] bg-[#0B101B] p-0.5 cursor-default"
+              title="Dark Mode Active"
             >
-              <span>Request a Quote</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-            </a>
-          </div>
+              <div className="w-4 h-4 rounded-full bg-[#00E5E5] shadow-xs" />
+            </div>
 
-          {/* Mobile Menu Hamburger */}
-          <div className="flex lg:hidden items-center">
+            {/* Search Icon */}
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              aria-expanded={mobileMenuOpen}
-              aria-label="Toggle Navigation Menu"
+              onClick={() => {
+                const elem = document.getElementById('products');
+                if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-[#C2C6D0] hover:text-[#00E5E5] transition-colors p-1.5 focus:outline-none"
+              aria-label="Search catalogue"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Search className="w-4 h-4" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Responsive Menu */}
+      {/* Full-Width Reusable Mega Menu Component */}
+      <MegaMenu 
+        activeMenu={activeMegaMenu} 
+        onClose={() => setActiveMegaMenu(null)} 
+        onNavigate={handleLinkClick as any}
+      />
+
+      {/* Mobile Responsive Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 max-h-[85vh] overflow-y-auto shadow-xl">
-          <div className="space-y-1">
+        <div className="lg:hidden border-t border-[#41434A] bg-[#050505] px-4 pt-3 pb-8 space-y-4 max-h-[85vh] overflow-y-auto shadow-2xl">
+          <div className="space-y-2">
+            {/* 1. Home */}
             <a
               href="/"
               onClick={(e) => handleLinkClick(e, '/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
             >
               Home
             </a>
 
-            <a
-              href="/solutions/"
-              onClick={(e) => handleLinkClick(e, '/solutions/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
-            >
-              Solutions
-            </a>
-
-            {/* Products Accordion in Mobile */}
+            {/* 2. Products Accordion */}
             <div className="pt-1">
-              <div className="px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-orange-600 font-bold">
+              <div className="px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-[#00E5E5] font-bold">
                 Products
               </div>
-              <div className="pl-4 space-y-1 border-l-2 border-slate-200 ml-3">
-                <div className="text-[10px] font-mono uppercase text-slate-400 font-semibold pt-1">
-                  Hardware
-                </div>
+              <div className="pl-4 space-y-1.5 border-l border-[#292D36] ml-3 mt-1">
                 <a
-                  href="/hardware/"
-                  onClick={(e) => handleLinkClick(e, '/hardware/')}
-                  className="block px-2 py-1 text-xs text-slate-700 hover:text-orange-600 font-medium"
+                  href="/hardware/dcn-heat-controller/"
+                  onClick={(e) => handleLinkClick(e, '/hardware/dcn-heat-controller/')}
+                  className="block px-2 py-1 text-xs text-[#C2C6D0] hover:text-[#00E5E5]"
+                >
+                  · DCN &amp; Heat Controller
+                </a>
+                <a
+                  href="/hardware/specification/"
+                  onClick={(e) => handleLinkClick(e, '/hardware/specification/')}
+                  className="block px-2 py-1 text-xs text-[#C2C6D0] hover:text-[#00E5E5]"
                 >
                   · Hardware Specifications &amp; Datasheet
                 </a>
                 <a
-                  href="/hardware/dcn-heat-controller/"
-                  onClick={(e) => handleLinkClick(e, '/hardware/dcn-heat-controller/')}
-                  className="block px-2 py-1 text-xs text-slate-500 hover:text-orange-600 font-medium"
+                  href="/software/fluxora/"
+                  onClick={(e) => handleLinkClick(e, '/software/fluxora/')}
+                  className="block px-2 py-1 text-xs text-[#C2C6D0] hover:text-[#00E5E5]"
                 >
-                  · DCN &amp; Heat Controller Overview
+                  · Fluxora PID Monitor
                 </a>
-
-                <div className="text-[10px] font-mono uppercase text-slate-400 font-semibold pt-2">
-                  Software (9 Modules)
-                </div>
-                {SOFTWARE_PRODUCTS.map((prod) => (
-                  <a
-                    key={prod.slug}
-                    href={prod.route}
-                    onClick={(e) => handleLinkClick(e, prod.route)}
-                    className="block px-2 py-1 text-xs text-slate-600 hover:text-orange-600 font-medium truncate"
-                  >
-                    · {prod.name} ({prod.purpose})
-                  </a>
-                ))}
+                <a
+                  href="/software/"
+                  onClick={(e) => handleLinkClick(e, '/software/')}
+                  className="block px-2 py-1 text-xs text-[#00E5E5] font-medium"
+                >
+                  · All Software Platforms (9) →
+                </a>
               </div>
             </div>
 
+            {/* 3. Services */}
+            <a
+              href="/services/"
+              onClick={(e) => handleLinkClick(e, '/services/')}
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/services') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
+            >
+              Services
+            </a>
+
+            {/* 4. Solutions */}
+            <a
+              href="/solutions/"
+              onClick={(e) => handleLinkClick(e, '/solutions/')}
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/solutions') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
+            >
+              Solutions
+            </a>
+
+            {/* 5. Demo */}
             <a
               href="/demo/"
               onClick={(e) => handleLinkClick(e, '/demo/')}
-              className={`block px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
-                isCurrent('/demo')
-                  ? 'text-orange-600 bg-orange-50/70 font-bold'
-                  : 'text-slate-800 hover:bg-slate-50'
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/demo') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
               }`}
             >
               Demo
             </a>
 
-            <a
-              href="/services/"
-              onClick={(e) => handleLinkClick(e, '/services/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
-            >
-              Services
-            </a>
-
+            {/* 6. Industries */}
             <a
               href="/industries/"
               onClick={(e) => handleLinkClick(e, '/industries/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/industries') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
             >
               Industries
             </a>
 
+            {/* 7. About Us */}
             <a
               href="/about/"
               onClick={(e) => handleLinkClick(e, '/about/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/about') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
             >
               About Us
             </a>
 
+            {/* 8. Contact */}
             <a
               href="/contact/"
               onClick={(e) => handleLinkClick(e, '/contact/')}
-              className="block px-3 py-2 rounded-md text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                isCurrent('/contact') ? 'text-[#00E5E5] bg-[#0B101B]' : 'text-[#F5F5F7] hover:text-[#00E5E5]'
+              }`}
             >
               Contact
-            </a>
-          </div>
-
-          <div className="pt-2 border-t border-slate-100">
-            <a
-              href="/contact/"
-              onClick={(e) => handleLinkClick(e, '/contact/')}
-              className="w-full flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg shadow-sm"
-            >
-              Request a Quote
             </a>
           </div>
         </div>

@@ -20,24 +20,24 @@ export function ProductCard({ product, onNavigate }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group">
+    <div className="bg-[#0B101B] rounded-2xl border border-[#292D36] overflow-hidden shadow-lg hover:border-[#41434A] transition-all flex flex-col justify-between group">
       <div>
         {/* Visual Preview Banner */}
         <div 
           onClick={handleCardClick}
-          className="relative h-56 bg-slate-50 border-b border-slate-100 overflow-hidden cursor-pointer flex items-center justify-center p-6 transition-colors group-hover:bg-slate-100/60"
+          className="relative h-56 bg-[#050505] border-b border-[#292D36] overflow-hidden cursor-pointer flex items-center justify-center p-6 transition-colors group-hover:bg-[#080D18]"
         >
           <div className="w-full text-center space-y-2">
-            <div className="w-14 h-14 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mx-auto mb-2 font-bold shadow-xs">
+            <div className="w-14 h-14 rounded-xl bg-[#0B101B] border border-[#292D36] text-[#00E5E5] flex items-center justify-center mx-auto mb-2 font-bold shadow-xs">
               <Cpu className="w-7 h-7" />
             </div>
-            <div className="text-xs font-mono font-bold text-orange-600 uppercase tracking-wider">
+            <div className="text-xs font-mono font-medium text-[#00E5E5] uppercase tracking-wider">
               Industrial IoT Platform
             </div>
-            <div className="text-slate-900 text-lg font-bold">
+            <div className="text-[#F5F5F7] text-lg font-medium">
               {product.name}
             </div>
-            <div className="text-[11px] font-mono text-slate-500">
+            <div className="text-[11px] font-mono text-[#969DAA]">
               ESP32 Edge Node · Looped RS485 Modbus · Local SBC Server
             </div>
           </div>
@@ -45,32 +45,32 @@ export function ProductCard({ product, onNavigate }: ProductCardProps) {
 
         {/* Card Content Area */}
         <div className="p-6">
-          <div className="text-xs font-medium text-orange-600 mb-1.5 font-mono">
+          <div className="text-xs font-medium text-[#00E5E5] mb-1.5 font-mono">
             {product.category}
           </div>
 
           <h3 
             onClick={handleCardClick}
-            className="text-xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors cursor-pointer leading-snug"
+            className="text-xl font-medium text-[#F5F5F7] group-hover:text-[#00E5E5] transition-colors cursor-pointer leading-snug"
           >
             {product.name}
           </h3>
 
-          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+          <p className="mt-3 text-sm text-[#C2C6D0] leading-relaxed">
             {product.shortDescription}
           </p>
 
-          <div className="mt-5 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-600">
+          <div className="mt-5 pt-4 border-t border-[#292D36] space-y-2 text-xs text-[#C2C6D0]">
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#00E5E5] shrink-0" />
               <span>Zero PID rewiring on existing Autonics panels</span>
             </div>
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#00E5E5] shrink-0" />
               <span>SOP-locked recipe execution &amp; keypad lockdown</span>
             </div>
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#00E5E5] shrink-0" />
               <span>Per-blanket active overcurrent heating halt</span>
             </div>
           </div>
@@ -78,22 +78,25 @@ export function ProductCard({ product, onNavigate }: ProductCardProps) {
       </div>
 
       {/* Card Actions */}
-      <div className="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between gap-3">
+      <div className="p-6 pt-0 border-t border-[#292D36] mt-4 flex items-center justify-between gap-3">
         <a
           href={`/hardware/${product.slug}/`}
           onClick={handleCardClick}
-          className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+          className="group relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden transition-all duration-300"
         >
-          <span>View Product</span>
-          <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+          <span className="absolute inset-0 bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7]" />
+          <span className="relative flex items-center justify-center px-5 py-2 rounded-full bg-[#050505] group-hover:bg-[#050505]/70 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-200">
+            <span>View Product</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1.5 text-[#00E5E5]" />
+          </span>
         </a>
 
         <a
           href={`/hardware/${product.slug}/#specifications`}
           onClick={handleSpecsClick}
-          className="inline-flex items-center text-xs font-medium text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
+          className="inline-flex items-center text-xs font-medium text-[#C2C6D0] hover:text-white bg-[#050505] hover:bg-[#111A2E] px-4 py-2 rounded-full border border-[#41434A] transition-colors whitespace-nowrap"
         >
-          <FileText className="w-3.5 h-3.5 mr-1 text-slate-500" />
+          <FileText className="w-3.5 h-3.5 mr-1 text-[#00E5E5]" />
           <span>Specifications</span>
         </a>
       </div>

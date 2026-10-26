@@ -196,7 +196,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#050505] text-[#F5F5F7] font-sans selection:bg-[#00E5E5] selection:text-black">
       {/* Redesigned Clean Header */}
       <SiteHeader currentPath={currentPath} onNavigate={handleNavigate} />
 

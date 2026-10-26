@@ -2,32 +2,20 @@ import React from 'react';
 import { 
   ArrowRight, 
   Cpu, 
-  Check, 
-  ShieldCheck, 
   ArrowUpRight, 
-  Layers, 
-  Wrench, 
-  Monitor, 
-  FileText, 
-  Zap, 
-  Clock, 
-  FileCheck,
-  CheckCircle2,
-  HardDrive,
-  Radio,
-  Sliders,
-  Database,
-  Wind,
-  Flame,
-  ShieldAlert,
-  Factory
+  Radio, 
+  Sliders, 
+  Database, 
+  FileCheck, 
+  Wind, 
+  Flame, 
+  ShieldAlert, 
+  Factory,
+  Download,
+  Sparkles
 } from 'lucide-react';
 import { HeroSection } from '../components/HeroSection';
 import { SectionHeading } from '../components/SectionHeading';
-import { ProductCard } from '../components/ProductCard';
-import { SoftwareCard } from '../components/SoftwareCard';
-import { HARDWARE_PRODUCTS } from '../data/products';
-import { SOFTWARE_PRODUCTS } from '../data/software';
 import { getSoftwareIcon } from '../components/IndustrialSoftwareIcons';
 
 interface HomePageProps {
@@ -35,8 +23,8 @@ interface HomePageProps {
 }
 
 export function HomePage({ onNavigate }: HomePageProps) {
-  // 9 Operational Challenges for Problem-Oriented Discovery
-  const operationalChallenges = [
+  // 4 Featured Solutions (reduced from 9 for scannability and clear focus)
+  const featuredSolutions = [
     {
       challenge: "Blade Mould Heating & Thermal Uniformity",
       symptom: "Manual thermostat adjustments cause hot-spots, uneven composite resin curing, and risk heater overcurrent burnouts.",
@@ -62,208 +50,205 @@ export function HomePage({ onNavigate }: HomePageProps) {
       slug: "smolder"
     },
     {
-      challenge: "Emergency Exit Compliance & Panic Door Interlocks",
-      symptom: "Unauthorized access through fire doors during normal shifts, with risks of locked doors trapping workers during true emergencies.",
-      solution: "Postern",
-      purpose: "Emergency Egress & Door Control",
-      route: "/software/postern/",
-      slug: "postern"
-    },
-    {
       challenge: "Uncontrolled Peak Power & Low Power Factor Penalty",
       symptom: "Unmonitored heavy induction loads trigger high peak-demand tariff penalties and avoidable energy losses.",
       solution: "Clime",
       purpose: "Plant Energy Monitoring & Demand Analytics",
       route: "/software/clime/",
       slug: "clime"
-    },
-    {
-      challenge: "Shop-Floor Tool Misplacement & Calibration Drift",
-      symptom: "Critical torque wrenches, crimpers, and calibration jigs get lost or operated beyond verified ISO/audit validity dates.",
-      solution: "Manifest",
-      purpose: "Industrial Asset & Tooling Tracking",
-      route: "/software/manifest/",
-      slug: "manifest"
-    },
-    {
-      challenge: "Shop-Floor WIP Blindspots & Defect Traceability",
-      symptom: "Paper traveler cards lose production lot genealogy, making QA defect containment and rework tracking slow and error-prone.",
-      solution: "Foundry",
-      purpose: "Shop-Floor ERP & Work-In-Progress Tracking",
-      route: "/software/foundry/",
-      slug: "foundry"
-    },
-    {
-      challenge: "Dispersed Plant Equipment & Noisy Serial Lines",
-      symptom: "Remote substations, pumps, and legacy serial equipment suffer telemetry gaps due to intense electromagnetic interference.",
-      solution: "Herald",
-      purpose: "Industrial Telemetry & Gateway Bridge",
-      route: "/software/herald/",
-      slug: "herald"
-    },
-    {
-      challenge: "Loading Bay Congestion & PPE Safety Compliance",
-      symptom: "Manual gate logs cause transport dock bottlenecks, and workers entering active fork-truck zones without mandatory hardhats.",
-      solution: "Census",
-      purpose: "Edge Video Analytics & Operational Safety",
-      route: "/software/census/",
-      slug: "census"
     }
   ];
 
   return (
-    <div className="space-y-24 pb-20">
+    <div className="space-y-20 sm:space-y-24 pb-20 bg-[#050505] text-[#F5F5F7]">
       {/* =========================================================================
           SECTION 1: HERO SECTION
-          Full-width industrial photography background with dark navy overlay
+          EPAM-style 2-column layout with dark ambient aura, gradient accent, and real photo
           ========================================================================= */}
       <HeroSection onNavigate={onNavigate} />
 
       {/* =========================================================================
-          SECTION 2: WHAT EMERTECH DOES (Business Capabilities)
-          Heading: "Connecting Industrial Equipment with Intelligent Operations"
-          Supporting: "We bring industrial hardware and software together to support process visibility, control, reporting, and operational workflows."
-          3 Clean Content Blocks: Industrial Connectivity, Monitoring & Control, Operational Information
+          SECTION 2: CORE CAPABILITIES (Immediately Following Hero)
+          3 compact blocks: Industrial Connectivity, Process Monitoring & Control, Localized Software
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="max-w-3xl space-y-4">
-          <span className="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold block">
-            What Emertech Does
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div className="max-w-3xl space-y-3">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-medium block">
+            Core Capabilities
           </span>
           <h2 
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight"
+            className="text-2xl sm:text-3xl lg:text-[38px] font-light tracking-tight text-[#F5F5F7] leading-tight"
             style={{ textWrap: 'balance' }}
           >
             Connecting Industrial Equipment with Intelligent Operations
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="text-base sm:text-[17px] text-[#C2C6D0] leading-relaxed font-normal">
             We bring industrial hardware and software together to support process visibility, control, reporting, and operational workflows.
           </p>
         </div>
 
         {/* Three Clean Business Capability Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Block 1: Industrial Connectivity */}
-          <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-xs hover:border-slate-300 transition-all space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600">
-              <Radio className="w-6 h-6" />
+          <div className="bg-[#0B101B] rounded-xl border border-[#292D36] p-7 shadow-sm hover:border-[#00E5E5]/50 transition-all duration-200 space-y-4 group">
+            <div className="w-11 h-11 rounded-lg bg-[#050505] border border-[#292D36] flex items-center justify-center text-[#00E5E5] group-hover:border-[#00E5E5]/40 transition-colors">
+              <Radio className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-medium text-[#F5F5F7]">
               Industrial Connectivity
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Connect relevant equipment and supported systems to collect and communicate operational data reliably across harsh industrial shop floors.
+            <p className="text-sm text-[#C2C6D0] leading-relaxed font-normal">
+              Connect plant-floor machinery, Modbus RTU sensors, and legacy PID instruments reliably across harsh industrial environments without rewiring.
             </p>
           </div>
 
           {/* Block 2: Monitoring & Control */}
-          <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-xs hover:border-slate-300 transition-all space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600">
-              <Sliders className="w-6 h-6" />
+          <div className="bg-[#0B101B] rounded-xl border border-[#292D36] p-7 shadow-sm hover:border-[#087BFF]/50 transition-all duration-200 space-y-4 group">
+            <div className="w-11 h-11 rounded-lg bg-[#050505] border border-[#292D36] flex items-center justify-center text-[#087BFF] group-hover:border-[#087BFF]/40 transition-colors">
+              <Sliders className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-medium text-[#F5F5F7]">
               Monitoring &amp; Control
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Help operators understand process conditions and interact with supported systems through responsive browser HMIs, recipe locks, and alarm triggers.
+            <p className="text-sm text-[#C2C6D0] leading-relaxed font-normal">
+              Equip operators with responsive browser HMIs, multi-zone temperature regulation, recipe locks, and automated emergency alarm triggers.
             </p>
           </div>
 
           {/* Block 3: Operational Information */}
-          <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-xs hover:border-slate-300 transition-all space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600">
-              <Database className="w-6 h-6" />
+          <div className="bg-[#0B101B] rounded-xl border border-[#292D36] p-7 shadow-sm hover:border-[#A855F7]/50 transition-all duration-200 space-y-4 group">
+            <div className="w-11 h-11 rounded-lg bg-[#050505] border border-[#292D36] flex items-center justify-center text-[#A855F7] group-hover:border-[#A855F7]/40 transition-colors">
+              <Database className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-medium text-[#F5F5F7]">
               Operational Information
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Make available records, reports, and process information easier to access where supported by the relevant product, delivering audit-ready batch records.
+            <p className="text-sm text-[#C2C6D0] leading-relaxed font-normal">
+              Self-hosted, 100% offline edge processing that logs telemetry at 1-second intervals and generates audit-ready PDF batch records.
             </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 3: HOW EMERTECH WORKS
-          Simple, professional four-stage visual explaining the general relationship
-          between industrial operations and connected systems
+          SECTION 3: FEATURED HARDWARE PRODUCTS (Moved Near Top)
+          Card background #0B101B, border #292D36, Cyan accents, real image
           ========================================================================= */}
-      <section className="bg-slate-100/70 border-y border-slate-200 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="products">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <SectionHeading
-            kicker="The Operational Journey"
-            title="How Emertech Works"
-            description="A structured, reliable approach connecting physical factory equipment to operational clarity and business decision-making."
-            align="center"
+            kicker="Field Hardware"
+            title="Featured Industrial Hardware"
+            description="Production-tested edge nodes and control hardware built for high-reliability factory deployment."
           />
+          <a
+            href="/hardware/specification/"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/hardware/specification/');
+            }}
+            className="text-xs font-medium uppercase tracking-wider text-[#00E5E5] hover:underline flex items-center space-x-1 shrink-0 pb-2"
+          >
+            <span>View Full Datasheet &amp; Specs</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
+          </a>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Stage 01 */}
-            <div className="bg-white rounded-xl p-7 border border-slate-200 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded border border-orange-100">
-                    Stage 01
-                  </span>
+        {/* Featured Hardware Showcase Card */}
+        <div className="bg-[#0B101B] rounded-2xl border border-[#292D36] p-6 sm:p-8 lg:p-10 shadow-xl hover:border-[#41434A] transition-all">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left: Product Imagery with Verified Badges */}
+            <div className="lg:col-span-5 space-y-3">
+              <div className="relative rounded-xl overflow-hidden bg-[#050505] aspect-[4/3] border border-[#292D36] group">
+                <img
+                  src="/assets/aistudio/image_d6d2a19a.png"
+                  alt="Emertech DCN & Heat Controller hardware node on industrial shop floor"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#050505]/90 backdrop-blur-md text-white text-[10px] font-mono uppercase px-2.5 py-1 rounded border border-[#41434A] flex items-center space-x-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#00E5E5] animate-pulse" />
+                  <span className="text-[#C2C6D0]">Production Verified</span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Understand the Operation
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Identify the customer's process, equipment, and operational requirements, evaluating existing field instrumentation and plant floor constraints.
-                </p>
               </div>
+              <p className="text-[11px] text-[#969DAA] font-mono text-center">
+                DCN Gateway &amp; Relay Node in wind blade mould heating facility
+              </p>
             </div>
 
-            {/* Stage 02 */}
-            <div className="bg-white rounded-xl p-7 border border-slate-200 shadow-xs flex flex-col justify-between">
+            {/* Right: Technical Highlights & Direct Actions */}
+            <div className="lg:col-span-7 space-y-6">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded border border-orange-100">
-                    Stage 02
-                  </span>
+                <div className="inline-flex items-center space-x-2 text-xs font-mono font-medium tracking-wider text-[#00E5E5] uppercase mb-2">
+                  <span>MODEL: EM-DCN-01</span>
+                  <span className="text-[#41434A]">|</span>
+                  <span>DUAL-CORE ESP32</span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Connect the System
+                <h3 className="text-2xl sm:text-3xl font-light text-[#F5F5F7] tracking-tight">
+                  DCN &amp; Heat Controller
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Establish the appropriate hardware and connectivity approach based on the actual requirements, tapping into Modbus loops without rewiring panels.
+                <p className="text-sm sm:text-[15px] text-[#C2C6D0] leading-relaxed mt-2.5 font-normal">
+                  Ruggedized edge telemetry gateway and multi-zone heating blanket controller. Taps directly into existing Autonics PID controllers over RS-485 Modbus RTU without panel rewiring, providing 4 independent 250V/10A relay channels and CT overcurrent protection.
                 </p>
               </div>
-            </div>
 
-            {/* Stage 03 */}
-            <div className="bg-white rounded-xl p-7 border border-slate-200 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded border border-orange-100">
-                    Stage 03
-                  </span>
+              {/* 4 Verified Spec Pills */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div className="bg-[#050505] p-3 rounded-lg border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase font-mono block">Processing</span>
+                  <span className="font-medium text-[#F5F5F7]">ESP32 240MHz</span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Monitor and Manage
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Use the relevant software and supported workflows to view, configure, and operate the connected system with multi-stage recipe locks.
-                </p>
+                <div className="bg-[#050505] p-3 rounded-lg border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase font-mono block">Switching</span>
+                  <span className="font-medium text-[#F5F5F7]">4x 250V / 10A</span>
+                </div>
+                <div className="bg-[#050505] p-3 rounded-lg border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase font-mono block">Bus Protocol</span>
+                  <span className="font-medium text-[#F5F5F7]">Modbus RTU</span>
+                </div>
+                <div className="bg-[#050505] p-3 rounded-lg border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase font-mono block">Network Mode</span>
+                  <span className="font-medium text-[#F5F5F7]">100% Offline</span>
+                </div>
               </div>
-            </div>
 
-            {/* Stage 04 */}
-            <div className="bg-white rounded-xl p-7 border border-slate-200 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded border border-orange-100">
-                    Stage 04
+              {/* Direct Actions */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <a
+                  href="/hardware/dcn-heat-controller/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/hardware/dcn-heat-controller/');
+                  }}
+                  className="group relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden transition-all duration-300"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7]" />
+                  <span className="relative flex items-center justify-center px-6 py-2.5 rounded-full bg-[#050505] group-hover:bg-[#050505]/70 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-200">
+                    <span>View Product Details</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-2 text-[#00E5E5]" />
                   </span>
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Act on Information
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Provide accessible logs, alerts, reports, and traceability records to inform operations, enforce quality assurance, and pass customer audits.
-                </p>
+                </a>
+
+                <a
+                  href="/hardware/specification/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/hardware/specification/');
+                  }}
+                  className="inline-flex items-center px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-[#C2C6D0] hover:text-white bg-[#050505] hover:bg-[#111A2E] border border-[#41434A] rounded-full transition-colors"
+                >
+                  <span>Engineering Datasheet</span>
+                </a>
+
+                <a
+                  href="/contact/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/contact/');
+                  }}
+                  className="text-xs text-[#969DAA] hover:text-[#00E5E5] transition-colors ml-auto flex items-center"
+                >
+                  <span>Inquire for Custom Hardware (Water/Fuel/Sensors) →</span>
+                </a>
               </div>
             </div>
           </div>
@@ -271,15 +256,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 4: PROBLEM-ORIENTED DISCOVERY
-          "Find the Right Solution for Your Operation"
+          SECTION 4: FEATURED SOLUTIONS (Reduced to 4 Core Applications)
+          Problem-oriented, focused discovery with clear symptoms and solution links
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <SectionHeading
             kicker="Problem-Oriented Discovery"
-            title="Find the Right Solution for Your Operation"
-            description="Start from the specific operational, safety, or quality challenge your facility faces on the plant floor."
+            title="Featured Industrial Solutions"
+            description="Start from the specific operational challenge your facility faces on the plant floor."
           />
           <a
             href="/solutions/"
@@ -287,41 +272,41 @@ export function HomePage({ onNavigate }: HomePageProps) {
               e.preventDefault();
               onNavigate('/solutions/');
             }}
-            className="text-xs font-semibold uppercase tracking-wider text-orange-600 hover:text-orange-700 flex items-center space-x-1 shrink-0 pb-2"
+            className="text-xs font-medium uppercase tracking-wider text-[#00E5E5] hover:underline flex items-center space-x-1 shrink-0 pb-2"
           >
-            <span>Explore All Solutions</span>
+            <span>Explore All 9 Solutions</span>
             <ArrowRight className="w-4 h-4 ml-1" />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {operationalChallenges.map((item) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {featuredSolutions.map((item) => (
             <div
               key={item.challenge}
-              className="bg-white rounded-xl border border-slate-200 p-6 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all flex flex-col justify-between group"
+              className="bg-[#0B101B] rounded-xl border border-[#292D36] p-6 sm:p-7 shadow-sm hover:border-[#41434A] transition-all flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold border border-orange-100">
-                    {getSoftwareIcon(item.slug, 'w-4 h-4')}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#050505] border border-[#292D36] text-[#00E5E5] flex items-center justify-center font-bold">
+                    {getSoftwareIcon(item.slug, 'w-5 h-5')}
                   </div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                  <span className="text-xs font-mono font-medium text-[#00E5E5] bg-[#00E5E5]/10 px-2.5 py-1 rounded border border-[#00E5E5]/20">
                     {item.solution}
                   </span>
                 </div>
 
-                <h3 className="text-sm font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">
+                <h3 className="text-lg font-medium text-[#F5F5F7] mb-2 group-hover:text-[#00E5E5] transition-colors">
                   {item.challenge}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                <p className="text-sm text-[#C2C6D0] leading-relaxed mb-4 font-normal">
                   {item.symptom}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] font-medium text-slate-500">
-                  Addressed by <strong className="text-slate-800">{item.solution}</strong>
+              <div className="pt-4 border-t border-[#292D36] flex items-center justify-between text-xs">
+                <span className="text-[#969DAA]">
+                  Platform: <strong className="text-[#F5F5F7] font-medium">{item.purpose}</strong>
                 </span>
                 <a
                   href={item.route}
@@ -329,7 +314,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     e.preventDefault();
                     onNavigate(item.route);
                   }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
+                  className="inline-flex items-center text-[#00E5E5] hover:underline font-medium"
                 >
                   <span>View Details</span>
                   <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
@@ -338,152 +323,48 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           ))}
         </div>
-      </section>
 
-      {/* =========================================================================
-          SECTION 5: HOW EMERTECH IS ORGANISED (The 4 Pillars)
-          ========================================================================= */}
-      <section className="bg-slate-100/70 border-y border-slate-200 py-18">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <SectionHeading
-            kicker="Business Architecture"
-            title="How Emertech Is Organised"
-            description="A clear separation of operational problems, industrial hardware, localized software platforms, and verified engineering services."
-            align="center"
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Pillar 01: Solutions */}
-            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-colors">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
-                  <Layers className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold block mb-1">
-                  Pillar 01
-                </span>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Solutions
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Problem-oriented application engineering across 9 manufacturing domains: blade curing, mass balancing, fire safety, egress, energy, tool tracking, ERP, telemetry, and edge video.
-                </p>
-              </div>
-              <div className="mt-6 pt-3 border-t border-slate-100">
-                <a
-                  href="/solutions/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/solutions/');
-                  }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
-                >
-                  <span>Explore Solutions</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Pillar 02: Hardware Products */}
-            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-colors">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold block mb-1">
-                  Pillar 02
-                </span>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Hardware Products
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Ruggedized industrial IoT edge hardware. The DCN &amp; Heat Controller features ESP32 processing, RS-485 Modbus RTU, 4 independent relay zones, and 1-second sampling.
-                </p>
-              </div>
-              <div className="mt-6 pt-3 border-t border-slate-100">
-                <a
-                  href="/hardware/dcn-heat-controller/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/hardware/dcn-heat-controller/');
-                  }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
-                >
-                  <span>Hardware Catalogue</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Pillar 03: Software Platforms */}
-            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-colors">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
-                  <Monitor className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold block mb-1">
-                  Pillar 03
-                </span>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Software Platforms
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  9 purpose-built industrial software platforms designed for 100% offline local SBC execution, live dashboard telemetry, recipe enforcement, and audit batch reports.
-                </p>
-              </div>
-              <div className="mt-6 pt-3 border-t border-slate-100">
-                <a
-                  href="/software/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/software/');
-                  }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
-                >
-                  <span>View All 9 Platforms</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Pillar 04: Engineering Services */}
-            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-colors">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
-                  <Wrench className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 font-bold block mb-1">
-                  Pillar 04
-                </span>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  Engineering Services
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Verified field engineering: site technical consultation, Autonics PID compatibility checks without panel rewiring, communication gateway integration, and pilot commissioning.
-                </p>
-              </div>
-              <div className="mt-6 pt-3 border-t border-slate-100">
-                <a
-                  href="/services/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/services/');
-                  }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
-                >
-                  <span>Explore Services</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
-              </div>
-            </div>
+        {/* Software Suite Banner */}
+        <div className="bg-[#080D18] rounded-xl border border-[#292D36] p-6 text-[#F5F5F7] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <h4 className="text-sm font-medium text-white flex items-center justify-center sm:justify-start gap-2">
+              <Sparkles className="w-4 h-4 text-[#00E5E5]" />
+              <span>Looking for the complete industrial software catalogue?</span>
+            </h4>
+            <p className="text-xs text-[#969DAA]">
+              Explore all 9 modular software platforms including Postern (Doors), Manifest (Tooling), and Census (Edge Video).
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <a
+              href="/demo/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/demo/');
+              }}
+              className="px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#C2C6D0] hover:text-white bg-[#0B101B] hover:bg-[#111A2E] rounded-full border border-[#41434A] transition-colors"
+            >
+              See Demo
+            </a>
+            <a
+              href="/software/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/software/');
+              }}
+              className="px-4 py-2 text-xs font-medium uppercase tracking-wider text-white bg-gradient-to-r from-[#00E5E5]/80 to-[#087BFF]/80 hover:from-[#00E5E5] hover:to-[#087BFF] rounded-full transition-colors"
+            >
+              All Software (9) →
+            </a>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 6: TARGET INDUSTRIES (Supported Sectors)
+          SECTION 5: INDUSTRIES WE SUPPORT (Supported Sectors)
+          Compact sector cards linking to /industries/
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <SectionHeading
             kicker="Supported Sectors"
@@ -496,7 +377,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               e.preventDefault();
               onNavigate('/industries/');
             }}
-            className="text-xs font-semibold uppercase tracking-wider text-orange-600 hover:text-orange-700 flex items-center space-x-1 shrink-0 pb-2"
+            className="text-xs font-medium uppercase tracking-wider text-[#00E5E5] hover:underline flex items-center space-x-1 shrink-0 pb-2"
           >
             <span>View All Industries</span>
             <ArrowRight className="w-4 h-4 ml-1" />
@@ -504,26 +385,26 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] hover:border-[#41434A] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
+              <div className="w-10 h-10 rounded-lg bg-[#050505] border border-[#292D36] text-[#00E5E5] flex items-center justify-center font-bold mb-4">
                 <Wind className="w-5 h-5" />
               </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+              <h4 className="text-base font-medium text-[#F5F5F7] mb-1.5">
                 Wind Blade Composites
               </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#C2C6D0] leading-relaxed">
                 Multi-zone mould heating, exothermic cure monitoring, and 3-blade rotor set center-of-gravity balancing.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100">
+            <div className="mt-4 pt-3 border-t border-[#292D36]">
               <a
                 href="/industries/"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/industries/');
                 }}
-                className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center"
+                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -531,26 +412,26 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] hover:border-[#41434A] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
+              <div className="w-10 h-10 rounded-lg bg-[#050505] border border-[#292D36] text-[#087BFF] flex items-center justify-center font-bold mb-4">
                 <Flame className="w-5 h-5" />
               </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+              <h4 className="text-base font-medium text-[#F5F5F7] mb-1.5">
                 Thermal &amp; Process Heating
               </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#C2C6D0] leading-relaxed">
                 Non-intrusive telemetry tap-in for existing Autonics PID controllers and overcurrent protection on blanket zones.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100">
+            <div className="mt-4 pt-3 border-t border-[#292D36]">
               <a
                 href="/industries/"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/industries/');
                 }}
-                className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center"
+                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -558,26 +439,26 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] hover:border-[#41434A] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
+              <div className="w-10 h-10 rounded-lg bg-[#050505] border border-[#292D36] text-[#A855F7] flex items-center justify-center font-bold mb-4">
                 <ShieldAlert className="w-5 h-5" />
               </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+              <h4 className="text-base font-medium text-[#F5F5F7] mb-1.5">
                 Plant Safety &amp; Egress
               </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#C2C6D0] leading-relaxed">
                 Centralized fire alarm siren staging, automated ventilation dampers, and fail-safe magnetic door locks.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100">
+            <div className="mt-4 pt-3 border-t border-[#292D36]">
               <a
                 href="/industries/"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/industries/');
                 }}
-                className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center"
+                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -585,26 +466,26 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] hover:border-[#41434A] transition-all flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold mb-4 border border-orange-100">
+              <div className="w-10 h-10 rounded-lg bg-[#050505] border border-[#292D36] text-[#00E5E5] flex items-center justify-center font-bold mb-4">
                 <Factory className="w-5 h-5" />
               </div>
-              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+              <h4 className="text-base font-medium text-[#F5F5F7] mb-1.5">
                 Discrete Manufacturing
               </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#C2C6D0] leading-relaxed">
                 Tool calibration expiry enforcement, production lot genealogy, submetering, and edge camera dock analytics.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100">
+            <div className="mt-4 pt-3 border-t border-[#292D36]">
               <a
                 href="/industries/"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/industries/');
                 }}
-                className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center"
+                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
               >
                 <span>Learn More</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -615,223 +496,271 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 7: PRODUCT PORTFOLIO (Separated Cleanly)
+          SECTION 6: HOW EMERTECH WORKS (The 4 Stages)
+          Horizontal desktop layout, shortened to 1 crisp sentence per stage
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Hardware Product */}
-        <div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <SectionHeading
-              kicker="Field Hardware"
-              title="Industrial Hardware Products"
-              description="DCN & Heat Controller: Ruggedized edge monitoring and relay switching for high-current industrial processes."
-            />
-            <a
-              href="/hardware/dcn-heat-controller/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/hardware/dcn-heat-controller/');
-              }}
-              className="text-xs font-semibold uppercase tracking-wider text-orange-600 hover:text-orange-700 flex items-center space-x-1 shrink-0 pb-2"
-            >
-              <span>Hardware Specification</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </a>
-          </div>
-
-          <div className="max-w-3xl">
-            <ProductCard product={HARDWARE_PRODUCTS[0]} onNavigate={onNavigate} />
-          </div>
-        </div>
-
-        {/* Software Platforms */}
-        <div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <SectionHeading
-              kicker="Operational Software"
-              title="Software Platforms for Industrial Operations"
-              description="Nine specialized software solutions built for shop-floor visibility, automated safety interlocks, and quality traceability."
-            />
-            <a
-              href="/software/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/software/');
-              }}
-              className="text-xs font-semibold uppercase tracking-wider text-orange-600 hover:text-orange-700 flex items-center space-x-1 shrink-0 pb-2"
-            >
-              <span>View Software Catalogue (9)</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {SOFTWARE_PRODUCTS.map((software) => (
-              <SoftwareCard
-                key={software.slug}
-                software={software}
-                onNavigate={onNavigate}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 8: PRODUCT EVIDENCE & CREDIBILITY
-          ========================================================================= */}
-      <section className="bg-slate-100/70 border-y border-slate-200 py-18">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="bg-[#080D18] border-y border-[#292D36] py-16 sm:py-20">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <SectionHeading
-            kicker="Engineering Evidence"
-            title="Product Evidence &amp; Verification"
-            description="Grounded in verified technical specifications, authentic brochure documentation, and actual batch inspection outputs."
+            kicker="The Operational Journey"
+            title="How Emertech Works"
+            description="A four-stage engineering workflow connecting physical equipment to actionable operational insights."
+            align="center"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left: Verified Hardware Specifications */}
-            <div className="lg:col-span-6 bg-white rounded-xl border border-slate-200 p-6 sm:p-7 shadow-xs space-y-5">
-              <div className="flex items-center space-x-3 pb-3 border-b border-slate-100">
-                <div className="w-9 h-9 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">
-                    DCN Edge Hardware Specifications
-                  </h4>
-                  <p className="text-[11px] text-slate-500 font-mono">
-                    Verified against production brochure &amp; schematics
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-3 text-xs">
-                <div className="flex items-start justify-between py-1.5 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Processing Core</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">Dual-Core ESP32 Industrial MCU</span>
-                </div>
-                <div className="flex items-start justify-between py-1.5 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Field Communication</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">RS-485 Modbus RTU / TCP (1000ms loop)</span>
-                </div>
-                <div className="flex items-start justify-between py-1.5 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Control Output Channels</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">4 Independent Relay Switching Zones</span>
-                </div>
-                <div className="flex items-start justify-between py-1.5 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Current Monitoring</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">Current Transformer (CT) overcurrent trip</span>
-                </div>
-                <div className="flex items-start justify-between py-1.5 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Instrument Compatibility</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">Autonics PID, Selec, Modbus meters</span>
-                </div>
-                <div className="flex items-start justify-between py-1.5">
-                  <span className="text-slate-500 font-medium">Operating Architecture</span>
-                  <span className="font-mono text-slate-900 font-semibold text-right">100% Offline Local SBC (No Cloud)</span>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <a
-                  href="/hardware/dcn-heat-controller/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/hardware/dcn-heat-controller/');
-                  }}
-                  className="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700"
-                >
-                  <span>Read Full DCN Technical Brochure</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {/* Stage 01 */}
+            <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-[#00E5E5] bg-[#00E5E5]/10 px-2.5 py-0.5 rounded border border-[#00E5E5]/20 inline-block mb-3">
+                  Stage 01
+                </span>
+                <h3 className="text-base font-medium text-[#F5F5F7] mb-2">
+                  Understand Operation
+                </h3>
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
+                  Identify process constraints, field sensors, and machinery interfaces across your plant floor.
+                </p>
               </div>
             </div>
 
-            {/* Right: Authentic Batch Inspection Artifact Sample */}
-            <div className="lg:col-span-6 bg-slate-900 rounded-xl p-6 sm:p-7 text-white shadow-md space-y-4 font-mono text-xs">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div className="flex items-center space-x-2">
-                  <FileCheck className="w-4 h-4 text-emerald-400" />
-                  <span className="font-bold text-slate-200">Tamper-Resistant Report Sample</span>
-                </div>
-                <span className="text-[10px] bg-slate-800 text-orange-400 px-2 py-0.5 rounded border border-slate-700">
-                  PDF / Excel Output
+            {/* Stage 02 */}
+            <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-[#087BFF] bg-[#087BFF]/10 px-2.5 py-0.5 rounded border border-[#087BFF]/20 inline-block mb-3">
+                  Stage 02
                 </span>
+                <h3 className="text-base font-medium text-[#F5F5F7] mb-2">
+                  Connect Equipment
+                </h3>
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
+                  Deploy non-intrusive Modbus RTU/RS485 taps and industrial edge nodes with zero panel rewiring.
+                </p>
               </div>
+            </div>
 
-              <div className="bg-slate-950 p-4 rounded-lg border border-slate-800 space-y-2 text-[11px] text-slate-300">
-                <div className="flex justify-between text-slate-400 border-b border-slate-800 pb-1">
-                  <span>BATCH ID: BLD-84M-2026-0418</span>
-                  <span>STATUS: PASSED</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Recipe: 3-Stage Epoxy Cure (75°C - 90°C)</span>
-                  <span>Duration: 04h 32m</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Zones: 24 active / 0 faulted</span>
-                  <span>Max Deviation: ±1.2°C</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Overcurrent Alarm Count: 0</span>
-                  <span>Sampling Interval: 1.0s</span>
-                </div>
-                <div className="flex justify-between text-slate-400 pt-1 border-t border-slate-800">
-                  <span>Supervisor: S. Verma (#1084)</span>
-                  <span>Digital Hash: verified</span>
-                </div>
+            {/* Stage 03 */}
+            <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-[#A855F7] bg-[#A855F7]/10 px-2.5 py-0.5 rounded border border-[#A855F7]/20 inline-block mb-3">
+                  Stage 03
+                </span>
+                <h3 className="text-base font-medium text-[#F5F5F7] mb-2">
+                  Monitor &amp; Manage
+                </h3>
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
+                  Access live browser-based telemetry, multi-zone recipe locks, and localized control workflows.
+                </p>
               </div>
+            </div>
 
-              <p className="text-slate-400 text-[11px] font-sans leading-relaxed">
-                Every production cure cycle creates an encrypted, tamper-evident batch record formatted for ISO 9001 quality audits and prime turbine customer verification.
-              </p>
+            {/* Stage 04 */}
+            <div className="bg-[#0B101B] rounded-xl p-6 border border-[#292D36] shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-[#00E5E5] bg-[#00E5E5]/10 px-2.5 py-0.5 rounded border border-[#00E5E5]/20 inline-block mb-3">
+                  Stage 04
+                </span>
+                <h3 className="text-base font-medium text-[#F5F5F7] mb-2">
+                  Act on Information
+                </h3>
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
+                  Generate tamper-evident batch reports, digital certificates, and actionable audit records.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 9: FINAL ENQUIRY CTA
+          SECTION 7: TECHNICAL EVIDENCE & CREDIBILITY
+          Verified DCN specs + authentic demonstration batch report
+          ========================================================================= */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <SectionHeading
+          kicker="Engineering Evidence"
+          title="Technical Verification &amp; Evidence"
+          description="Grounded in verified technical specifications, authentic brochure documentation, and actual batch inspection outputs."
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Verified Hardware Specifications */}
+          <div className="lg:col-span-6 bg-[#0B101B] rounded-xl border border-[#292D36] p-6 sm:p-7 shadow-sm space-y-5">
+            <div className="flex items-center space-x-3 pb-3 border-b border-[#292D36]">
+              <div className="w-9 h-9 rounded-lg bg-[#050505] border border-[#292D36] text-[#00E5E5] flex items-center justify-center font-bold">
+                <Cpu className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-base font-medium text-[#F5F5F7]">
+                  DCN Edge Hardware Specifications
+                </h4>
+                <p className="text-[11px] text-[#969DAA] font-mono">
+                  Verified against production brochure &amp; schematics
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3 text-xs">
+              <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
+                <span className="text-[#969DAA]">Processing Core</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">Dual-Core ESP32 Industrial MCU</span>
+              </div>
+              <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
+                <span className="text-[#969DAA]">Field Communication</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">RS-485 Modbus RTU / TCP (1000ms loop)</span>
+              </div>
+              <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
+                <span className="text-[#969DAA]">Control Output Channels</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">4 Independent Relay Switching Zones</span>
+              </div>
+              <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
+                <span className="text-[#969DAA]">Current Monitoring</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">Current Transformer (CT) overcurrent trip</span>
+              </div>
+              <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
+                <span className="text-[#969DAA]">Instrument Compatibility</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">Autonics PID, Selec, Modbus meters</span>
+              </div>
+              <div className="flex items-start justify-between py-1.5">
+                <span className="text-[#969DAA]">Operating Architecture</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">100% Offline Local SBC (No Cloud)</span>
+              </div>
+            </div>
+
+            <div className="pt-2 flex items-center justify-between">
+              <a
+                href="/hardware/specification/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/hardware/specification/');
+                }}
+                className="inline-flex items-center text-xs font-medium text-[#00E5E5] hover:underline"
+              >
+                <span>Read Full Technical Datasheet</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </a>
+
+              <a
+                href="/assets/aistudio/Emertech_Brochure_881bad62.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[#969DAA] hover:text-[#00E5E5] inline-flex items-center gap-1 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5 text-[#00E5E5]" />
+                <span>Brochure (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Authentic Demonstration Batch Report Sample */}
+          <div className="lg:col-span-6 bg-[#0B101B] rounded-xl p-6 sm:p-7 text-[#F5F5F7] border border-[#292D36] shadow-sm space-y-4 font-mono text-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-[#292D36]">
+              <div className="flex items-center space-x-2">
+                <FileCheck className="w-4 h-4 text-[#00E5E5]" />
+                <span className="font-medium text-[#F5F5F7]">Demonstration Report Output</span>
+              </div>
+              <span className="text-[10px] bg-[#050505] text-[#00E5E5] px-2 py-0.5 rounded border border-[#292D36]">
+                Fluxora PDF / CSV
+              </span>
+            </div>
+
+            <div className="bg-[#050505] p-4 rounded-lg border border-[#292D36] space-y-2 text-[11px] text-[#C2C6D0]">
+              <div className="flex justify-between text-[#969DAA] border-b border-[#292D36] pb-1">
+                <span>BATCH ID: BLD-84M-2026-0418</span>
+                <span className="text-[#00E5E5] font-semibold">STATUS: PASSED</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Recipe: 3-Stage Epoxy Cure (75°C - 90°C)</span>
+                <span>Duration: 04h 32m</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Zones: 24 active / 0 faulted</span>
+                <span>Max Deviation: ±1.2°C</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Overcurrent Alarm Count: 0</span>
+                <span>Sampling Interval: 1.0s</span>
+              </div>
+              <div className="flex justify-between text-[#969DAA] pt-1 border-t border-[#292D36]">
+                <span>Supervisor: S. Verma (#1084)</span>
+                <span>Digital Hash: verified</span>
+              </div>
+            </div>
+
+            <p className="text-[#969DAA] text-[11px] font-sans leading-relaxed">
+              Sample output from production cure cycle. Creates tamper-evident batch records formatted for ISO 9001 quality audits and prime turbine customer verification.
+            </p>
+
+            <div className="pt-1">
+              <a
+                href="/demo/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/demo/');
+                }}
+                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
+              >
+                <span>Explore Software Screenshots in Demo Gallery</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 8: FINAL ENQUIRY CTA
           "Let's Discuss Your Industrial Requirements"
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 rounded-2xl p-8 sm:p-14 text-white text-center space-y-6">
-          <span className="text-xs font-mono uppercase tracking-widest text-orange-400 font-semibold block">
-            Direct Engineering Engagement
-          </span>
-          <h2 
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white max-w-2xl mx-auto"
-            style={{ textWrap: 'balance' }}
-          >
-            Let's Discuss Your Industrial Requirements
-          </h2>
-          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Whether you need to retrofit composite mould heating, connect factory telemetry, or pilot a localized software platform, our engineering team in Vadodara is ready to help.
-          </p>
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-2xl bg-gradient-to-b from-[#080D18] to-[#0B101B] border border-[#292D36] p-8 sm:p-14 text-[#F5F5F7] text-center space-y-6 overflow-hidden">
+          {/* Subtle Ambient Light Aura in CTA card */}
+          <div 
+            className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#00E5E5]/10 rounded-full blur-[100px] pointer-events-none"
+            aria-hidden="true"
+          />
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <a
-              href="/contact/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/contact/');
-              }}
-              className="inline-flex items-center justify-center px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg transition-colors shadow-sm whitespace-nowrap"
+          <div className="relative z-10 space-y-4">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-medium block">
+              Direct Engineering Engagement
+            </span>
+            <h2 
+              className="text-2xl sm:text-3xl lg:text-[40px] font-light tracking-tight text-white max-w-2xl mx-auto leading-tight"
+              style={{ textWrap: 'balance' }}
             >
-              <span>Request a Quote</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
+              Let's Discuss Your Industrial Requirements
+            </h2>
+            <p className="text-base sm:text-[17px] text-[#C2C6D0] max-w-xl mx-auto leading-relaxed font-normal">
+              Whether you need to retrofit composite mould heating, connect factory telemetry, or pilot a localized software platform, our engineering team in Vadodara is ready to help.
+            </p>
 
-            <a
-              href="/contact/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/contact/');
-              }}
-              className="inline-flex items-center justify-center px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition-colors whitespace-nowrap"
-            >
-              <span>Talk to Our Team</span>
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <a
+                href="/contact/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/contact/');
+                }}
+                className="group relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden transition-all duration-300 shadow-lg hover:shadow-[#00E5E5]/20"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7]" />
+                <span className="relative flex items-center justify-center px-8 py-3 rounded-full bg-[#050505] group-hover:bg-[#050505]/70 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-200">
+                  <span>Request a Quote</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-2 text-[#00E5E5] group-hover:translate-x-1 transition-transform" />
+                </span>
+              </a>
+
+              <a
+                href="/contact/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/contact/');
+                }}
+                className="inline-flex items-center justify-center px-7 py-3 text-xs font-medium uppercase tracking-wider text-[#C2C6D0] hover:text-white bg-[#050505] hover:bg-[#111A2E] border border-[#41434A] rounded-full transition-colors"
+              >
+                <span>Talk to Our Team</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
