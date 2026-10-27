@@ -25,10 +25,12 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showConfigGuide, setShowConfigGuide] = useState(false);
 
-  // Environment variables for EmailJS
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || import.meta.env.VITE_EMAILJS_USER_ID || '';
+  // Sanitize environment variables to strip accidental quotes or whitespace
+  const cleanEnv = (val?: string) => (val || '').trim().replace(/^["']|["']$/g, '');
+
+  const serviceId = cleanEnv(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+  const templateId = cleanEnv(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+  const publicKey = cleanEnv(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || import.meta.env.VITE_EMAILJS_USER_ID);
 
   const isEmailJsConfigured = Boolean(serviceId && templateId && publicKey);
 
