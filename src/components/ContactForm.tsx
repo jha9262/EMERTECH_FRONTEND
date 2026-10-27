@@ -30,6 +30,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
 
   const serviceId = cleanEnv(import.meta.env.VITE_EMAILJS_SERVICE_ID);
   const templateId = cleanEnv(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+  const autoReplyTemplateId = cleanEnv(import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID);
   const publicKey = cleanEnv(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || import.meta.env.VITE_EMAILJS_USER_ID);
 
   const isEmailJsConfigured = Boolean(serviceId && templateId && publicKey);
@@ -94,25 +95,50 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
       inquiry_type: formValues.inquiryType,
       message_requirements: formValues.message,
 
-      // Common EmailJS default parameter aliases
+      // Common EmailJS default parameter aliases for sender/visitor
       from_name: formValues.fullName,
       from_email: formValues.email,
       reply_to: formValues.email,
       user_name: formValues.fullName,
       user_email: formValues.email,
+      client_email: formValues.email,
+      recipient_email: formValues.email,
       email: formValues.email,
+      to_name: formValues.fullName,
+      customer_name: formValues.fullName,
       phone: formValues.phone || 'Not provided',
       company: formValues.companyName || 'Not specified',
       company_name: formValues.companyName || 'Not specified',
       product: formValues.productInterest,
       subject: `[Emertech Enquiry] ${formValues.inquiryType} - ${formValues.productInterest}`,
       message: formValues.message,
+
+      // Company info aliases
+      company_email: COMPANY_INFO.email,
+      admin_email: COMPANY_INFO.email,
       to_email: COMPANY_INFO.email,
     };
 
     try {
       const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
       if (response.status === 200 || response.text === 'OK') {
+        // If a separate auto-reply template is configured, trigger it
+        if (autoReplyTemplateId) {
+          try {
+            await emailjs.send(
+              serviceId,
+              autoReplyTemplateId,
+              {
+                ...templateParams,
+                to_email: formValues.email,
+                to_name: formValues.fullName,
+              },
+              publicKey
+            );
+          } catch (autoErr) {
+            console.warn('Dedicated auto-reply template call failed:', autoErr);
+          }
+        }
         setSubmittedData(formValues);
       } else {
         throw new Error(`EmailJS responded with status: ${response.status}`);
@@ -273,9 +299,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.fullName}
                 onChange={handleChange}
                 placeholder="e.g. Rajesh Patel"
-                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
-                  errors.fullName ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
-                }`}
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${errors.fullName ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
+                  }`}
               />
               {errors.fullName && (
                 <p className="text-[11px] text-red-400 mt-1">{errors.fullName}</p>
@@ -295,9 +320,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.email}
                 onChange={handleChange}
                 placeholder="name@company.com"
-                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
-                  errors.email ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
-                }`}
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${errors.email ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
+                  }`}
               />
               {errors.email && (
                 <p className="text-[11px] text-red-400 mt-1">{errors.email}</p>
@@ -318,9 +342,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.phone}
                 onChange={handleChange}
                 placeholder="+91 98765 43210"
-                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
-                  errors.phone ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
-                }`}
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${errors.phone ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
+                  }`}
               />
               {errors.phone && (
                 <p className="text-[11px] text-red-400 mt-1">{errors.phone}</p>
@@ -405,9 +428,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
               value={formValues.message}
               onChange={handleChange}
               placeholder="Describe your site parameters, number of dispensers or meters, heating mould size, or software requirements..."
-              className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
-                errors.message ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
-              }`}
+              className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${errors.message ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
+                }`}
             />
             {errors.message && (
               <p className="text-[11px] text-red-400 mt-1">{errors.message}</p>
@@ -419,9 +441,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7] hover:opacity-95 rounded-lg transition-all shadow-md cursor-pointer ${
-                isSubmitting ? 'opacity-60 cursor-not-allowed pointer-events-none' : ''
-              }`}
+              className={`w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7] hover:opacity-95 rounded-lg transition-all shadow-md cursor-pointer ${isSubmitting ? 'opacity-60 cursor-not-allowed pointer-events-none' : ''
+                }`}
             >
               {isSubmitting ? (
                 <>
