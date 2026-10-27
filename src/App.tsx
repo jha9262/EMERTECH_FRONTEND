@@ -69,6 +69,14 @@ export default function App() {
       }
     } else if (clean === '/solutions') {
       pageTitle = 'Industrial Solutions & Applications — Emertech Electronics';
+    } else if (clean.startsWith('/solutions/')) {
+      const solutionSlug = clean.replace('/solutions/', '');
+      const software = getSoftwareBySlug(solutionSlug);
+      if (software) {
+        pageTitle = `${software.name} Solution — Emertech Electronics`;
+      } else {
+        pageTitle = 'Industrial Solution Detail — Emertech Electronics';
+      }
     } else if (clean === '/demo') {
       pageTitle = 'Software Demo — See Industrial Monitoring in Action | Emertech Electronics';
     } else if (clean === '/services') {
@@ -161,8 +169,32 @@ export default function App() {
       return <NotFoundPage onNavigate={handleNavigate} />;
     }
 
-    // Solutions Route
+    // Solutions Route & Solution Detail Pages: /solutions or /solutions/[slug]
     if (normalized === '/solutions') {
+      return <SolutionsPage onNavigate={handleNavigate} />;
+    }
+
+    if (normalized.startsWith('/solutions/')) {
+      const solutionSlug = normalized.replace('/solutions/', '');
+      if (solutionSlug === 'dcn-heat-controller' || solutionSlug === 'pid-relay-control') {
+        return <DcnHeatControllerPage onNavigate={handleNavigate} />;
+      }
+      const solutionAliasMap: Record<string, string> = {
+        'blade-heating': 'fluxora',
+        'blade-balancing': 'equipoise',
+        'fire-siren': 'smolder',
+        'emergency-doors': 'postern',
+        'energy-monitoring': 'clime',
+        'asset-tracking': 'manifest',
+        'production-management': 'foundry',
+        'long-range-communication': 'herald',
+        'video-analytics': 'census',
+      };
+      const targetSlug = solutionAliasMap[solutionSlug] || solutionSlug;
+      const software = getSoftwareBySlug(targetSlug);
+      if (software) {
+        return <SoftwareDetailPage software={software} onNavigate={handleNavigate} />;
+      }
       return <SolutionsPage onNavigate={handleNavigate} />;
     }
 

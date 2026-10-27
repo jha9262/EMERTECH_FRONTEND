@@ -75,7 +75,7 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
   const handleMenuMouseLeave = () => {
     menuTimeoutRef.current = setTimeout(() => {
       setActiveMegaMenu(null);
-    }, 180);
+    }, 250);
   };
 
   const isCurrent = (path: string) => {
@@ -320,6 +320,13 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
       {/* Full-Width Reusable Mega Menu Component */}
       <MegaMenu 
         activeMenu={activeMegaMenu} 
+        onMouseEnter={() => {
+          if (menuTimeoutRef.current) {
+            clearTimeout(menuTimeoutRef.current);
+            menuTimeoutRef.current = null;
+          }
+        }}
+        onMouseLeave={handleMenuMouseLeave}
         onClose={() => setActiveMegaMenu(null)} 
         onNavigate={(path) => {
           setActiveMegaMenu(null);
