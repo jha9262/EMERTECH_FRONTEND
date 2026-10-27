@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrandLogo } from '../components/BrandLogo';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { SectionHeading } from '../components/SectionHeading';
 import { CallToAction } from '../components/CallToAction';
@@ -74,9 +75,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
           {/* Right Column: Vadodara Operations Card */}
           <div className="lg:col-span-5 bg-[#0B101B] text-[#F5F5F7] rounded-2xl p-8 border border-[#292D36] space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-[#FF5A00] flex items-center justify-center font-bold text-white text-lg shadow-sm">
-                ET
-              </div>
+              <BrandLogo compact />
               <div>
                 <h3 className="font-bold text-base text-[#F5F5F7]">Emertech Electronics</h3>
                 <span className="text-xs font-mono text-[#969DAA]">Engineering &amp; Manufacturing Center</span>

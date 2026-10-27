@@ -1,5 +1,6 @@
 import React from 'react';
 import { Database, Layers, Radio } from 'lucide-react';
+import { BrandLogo } from '../BrandLogo';
 
 export function DcnHardwareVisual() {
   return (
@@ -52,17 +53,7 @@ export function DcnHardwareVisual() {
           {/* Brand Mark Column */}
           <div className="col-span-5 space-y-1">
             <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 rounded-lg bg-[#FF5A00] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                ET
-              </div>
-              <div>
-                <div className="text-xs font-black text-white tracking-wide uppercase">
-                  EMERTECH
-                </div>
-                <div className="text-[8px] font-mono font-semibold text-slate-400 uppercase tracking-widest -mt-0.5">
-                  ELECTRONICS
-                </div>
-              </div>
+              <BrandLogo compact />
             </div>
 
             <div className="pt-1.5">

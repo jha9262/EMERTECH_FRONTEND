@@ -2,6 +2,7 @@ import React from 'react';
 import { Mail, Phone, MapPin, Download, ArrowUpRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/products';
 import { formatPhoneForHref } from '../utils/product-utils';
+import { BrandLogo } from './BrandLogo';
 
 interface SiteFooterProps {
   onNavigate?: (path: string) => void;
@@ -26,19 +27,7 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#292D36]">
           {/* Column 1: Company Profile */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-xl bg-[#FF5A00] text-white flex items-center justify-center font-bold text-base shadow-sm">
-                ET
-              </div>
-              <div>
-                <span className="text-base font-extrabold tracking-tight text-white uppercase block">
-                  EMERTECH
-                </span>
-                <span className="text-[10px] font-semibold tracking-wider text-[#969DAA] uppercase -mt-0.5 block font-mono">
-                  ELECTRONICS
-                </span>
-              </div>
-            </div>
+            <BrandLogo />
 
             <p className="text-xs text-[#969DAA] leading-relaxed max-w-sm">
               Industrial hardware and software solutions company based in Vadodara, Gujarat. Connecting physical equipment with intelligent monitoring, process control, reporting, and operational insights.

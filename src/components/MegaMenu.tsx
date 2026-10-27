@@ -136,7 +136,6 @@ const MEGA_MENUS_DATA: Record<Exclude<MegaMenuType, null>, MenuData> = {
           items: [
             { label: 'Plant Energy & Demand Analytics (Clime)', route: '/software/clime/' },
             { label: 'Industrial Telemetry & Modbus Loops (Herald)', route: '/software/herald/' },
-            { label: 'Autonomous Modbus Gateway Integration', route: '/services/' },
           ],
         },
       ],
@@ -149,7 +148,6 @@ const MEGA_MENUS_DATA: Record<Exclude<MegaMenuType, null>, MenuData> = {
             { label: 'Tool & Asset Calibration Tracking (Manifest)', route: '/software/manifest/' },
             { label: 'Shop-Floor ERP & Batch Genealogy (Foundry)', route: '/software/foundry/' },
             { label: 'Edge Video Analytics & Safety (Census)', route: '/software/census/' },
-            { label: 'Explore All 9 Solutions →', route: '/solutions/' },
           ],
         },
       ],

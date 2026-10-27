@@ -16,7 +16,7 @@ export function CallToAction({
   showBrochure = true,
 }: CallToActionProps) {
   return (
-    <section className="bg-[#080D18] text-[#F5F5F7] py-16 border-t border-[#292D36]">
+    <section className="dark-section bg-[#080D18] text-[#F5F5F7] py-16 border-t border-[#292D36]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden bg-gradient-to-r from-[#050505] via-[#0B101B] to-[#050505] rounded-2xl p-8 sm:p-12 border border-[#292D36] shadow-2xl">
           {/* Subtle glow accent */}

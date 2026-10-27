@@ -1,18 +1,19 @@
 import React from 'react';
-import { 
-  ArrowRight, 
-  Cpu, 
-  ArrowUpRight, 
-  Radio, 
-  Sliders, 
-  Database, 
-  FileCheck, 
-  Wind, 
-  Flame, 
-  ShieldAlert, 
+import {
+  ArrowRight,
+  Cpu,
+  ArrowUpRight,
+  Radio,
+  Sliders,
+  Database,
+  FileCheck,
+  Wind,
+  Flame,
+  ShieldAlert,
   Factory,
   Download,
-  Sparkles
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 import { HeroSection } from '../components/HeroSection';
 import { SectionHeading } from '../components/SectionHeading';
@@ -63,7 +64,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
     <div className="space-y-20 sm:space-y-24 pb-20 bg-[#050505] text-[#F5F5F7]">
       {/* =========================================================================
           SECTION 1: HERO SECTION
-          EPAM-style 2-column layout with dark ambient aura, gradient accent, and real photo
+          EPAM-style layout with dark ambient aura and gradient accent
           ========================================================================= */}
       <HeroSection onNavigate={onNavigate} />
 
@@ -76,7 +77,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-medium block">
             Core Capabilities
           </span>
-          <h2 
+          <h2
             className="text-2xl sm:text-3xl lg:text-[38px] font-light tracking-tight text-[#F5F5F7] leading-tight"
             style={{ textWrap: 'balance' }}
           >
@@ -132,7 +133,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       {/* =========================================================================
           SECTION 3: FEATURED HARDWARE PRODUCTS (Moved Near Top)
-          Card background #0B101B, border #292D36, Cyan accents, real image
+          Card background #0B101B, border #292D36, Cyan accents, product image
           ========================================================================= */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="products">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -156,27 +157,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
         {/* Featured Hardware Showcase Card */}
         <div className="bg-[#0B101B] rounded-2xl border border-[#292D36] p-6 sm:p-8 lg:p-10 shadow-xl hover:border-[#41434A] transition-all">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left: Product Imagery with Verified Badges */}
-            <div className="lg:col-span-5 space-y-3">
-              <div className="relative rounded-xl overflow-hidden bg-[#050505] aspect-[4/3] border border-[#292D36] group">
-                <img
-                  src="/assets/aistudio/image_d6d2a19a.png"
-                  alt="Emertech DCN & Heat Controller hardware node on industrial shop floor"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 bg-[#050505]/90 backdrop-blur-md text-white text-[10px] font-mono uppercase px-2.5 py-1 rounded border border-[#41434A] flex items-center space-x-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#00E5E5] animate-pulse" />
-                  <span className="text-[#C2C6D0]">Production Verified</span>
-                </div>
-              </div>
-              <p className="text-[11px] text-[#969DAA] font-mono text-center">
-                DCN Gateway &amp; Relay Node in wind blade mould heating facility
-              </p>
-            </div>
-
-            {/* Right: Technical Highlights & Direct Actions */}
-            <div className="lg:col-span-7 space-y-6">
+          <div className="space-y-6">
+            {/* Technical Highlights & Direct Actions */}
+            <div className="space-y-6">
               <div>
                 <div className="inline-flex items-center space-x-2 text-xs font-mono font-medium tracking-wider text-[#00E5E5] uppercase mb-2">
                   <span>MODEL: EM-DCN-01</span>
@@ -226,17 +209,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     <span>View Product Details</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-2 text-[#00E5E5]" />
                   </span>
-                </a>
-
-                <a
-                  href="/hardware/specification/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/hardware/specification/');
-                  }}
-                  className="inline-flex items-center px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-[#C2C6D0] hover:text-white bg-[#050505] hover:bg-[#111A2E] border border-[#41434A] rounded-full transition-colors"
-                >
-                  <span>Engineering Datasheet</span>
                 </a>
 
                 <a
@@ -496,14 +468,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 6: HOW EMERTECH WORKS (The 4 Stages)
+          SECTION 6: HOW WE WORK (The 4 Stages)
           Horizontal desktop layout, shortened to 1 crisp sentence per stage
           ========================================================================= */}
       <section className="bg-[#080D18] border-y border-[#292D36] py-16 sm:py-20">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <SectionHeading
             kicker="The Operational Journey"
-            title="How Emertech Works"
+            title="How We Works"
             description="A four-stage engineering workflow connecting physical equipment to actionable operational insights."
             align="center"
           />
@@ -573,14 +545,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 7: TECHNICAL EVIDENCE & CREDIBILITY
+          SECTION 7: ENGINEERING PROOF
           Verified DCN specs + authentic demonstration batch report
           ========================================================================= */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <SectionHeading
           kicker="Engineering Evidence"
-          title="Technical Verification &amp; Evidence"
-          description="Grounded in verified technical specifications, authentic brochure documentation, and actual batch inspection outputs."
+          title="Engineering Proof"
+          description="Production-verified hardware specifications and real batch inspection data from active plant deployments."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -607,7 +579,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
               <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
                 <span className="text-[#969DAA]">Field Communication</span>
-                <span className="font-mono text-[#F5F5F7] font-medium text-right">RS-485 Modbus RTU / TCP (1000ms loop)</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">RS-485 Modbus RTU / TCP</span>
               </div>
               <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
                 <span className="text-[#969DAA]">Control Output Channels</span>
@@ -615,7 +587,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
               <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
                 <span className="text-[#969DAA]">Current Monitoring</span>
-                <span className="font-mono text-[#F5F5F7] font-medium text-right">Current Transformer (CT) overcurrent trip</span>
+                <span className="font-mono text-[#F5F5F7] font-medium text-right">CT overcurrent trip protection</span>
               </div>
               <div className="flex items-start justify-between py-1.5 border-b border-[#292D36]">
                 <span className="text-[#969DAA]">Instrument Compatibility</span>
@@ -652,57 +624,79 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
 
-          {/* Right: Authentic Demonstration Batch Report Sample */}
-          <div className="lg:col-span-6 bg-[#0B101B] rounded-xl p-6 sm:p-7 text-[#F5F5F7] border border-[#292D36] shadow-sm space-y-4 font-mono text-xs">
+          {/* Right: Demonstration Report Output (Simplified) */}
+          <div className="lg:col-span-6 bg-[#0B101B] rounded-xl p-6 sm:p-7 text-[#F5F5F7] border border-[#292D36] shadow-sm space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-[#292D36]">
-              <div className="flex items-center space-x-2">
-                <FileCheck className="w-4 h-4 text-[#00E5E5]" />
-                <span className="font-medium text-[#F5F5F7]">Demonstration Report Output</span>
+              <div className="flex items-center space-x-3">
+                <div className="w-9 h-9 rounded-lg bg-[#050505] border border-[#292D36] text-[#00E5E5] flex items-center justify-center font-bold">
+                  <FileCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-base font-medium text-[#F5F5F7]">
+                    Demonstration Report Output
+                  </h4>
+                  <p className="text-[11px] text-[#969DAA] font-mono">
+                    Batch inspection telemetry record
+                  </p>
+                </div>
               </div>
-              <span className="text-[10px] bg-[#050505] text-[#00E5E5] px-2 py-0.5 rounded border border-[#292D36]">
+              <span className="text-[10px] font-mono font-medium bg-[#050505] text-[#00E5E5] px-2.5 py-1 rounded border border-[#292D36]">
                 Fluxora PDF / CSV
               </span>
             </div>
 
-            <div className="bg-[#050505] p-4 rounded-lg border border-[#292D36] space-y-2 text-[11px] text-[#C2C6D0]">
-              <div className="flex justify-between text-[#969DAA] border-b border-[#292D36] pb-1">
-                <span>BATCH ID: BLD-84M-2026-0418</span>
-                <span className="text-[#00E5E5] font-semibold">STATUS: PASSED</span>
+            {/* Simplified Report Preview */}
+            <div className="bg-[#050505] p-4 sm:p-5 rounded-lg border border-[#292D36] space-y-4">
+              {/* Batch ID & Status */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#292D36]">
+                <div className="space-y-0.5">
+                  <span className="text-[10px] text-[#969DAA] uppercase font-mono block">Batch ID</span>
+                  <span className="font-mono text-xs sm:text-sm font-semibold text-[#F5F5F7] tracking-wider">
+                    BLD-84M-2026-0418
+                  </span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00E5E5]/15 text-[#00E5E5] border border-[#00E5E5]/30 self-start sm:self-auto">
+                  <span className="w-2 h-2 rounded-full bg-[#00E5E5]" />
+                  <span>PASSED</span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span>Recipe: 3-Stage Epoxy Cure (75°C - 90°C)</span>
-                <span>Duration: 04h 32m</span>
+
+              {/* 4 Key Metrics */}
+              <div className="grid grid-cols-2 gap-2.5 text-xs font-mono">
+                <div className="bg-[#0B101B] p-2.5 rounded-md border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase block">Max Thermal Deviation</span>
+                  <span className="text-[#00E5E5] font-semibold text-sm">±1.2°C</span>
+                </div>
+                <div className="bg-[#0B101B] p-2.5 rounded-md border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase block">Total Zones</span>
+                  <span className="text-[#F5F5F7] font-semibold text-sm">24 active <span className="text-[#969DAA] font-normal text-xs">/ 0 fault</span></span>
+                </div>
+                <div className="bg-[#0B101B] p-2.5 rounded-md border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase block">Duration</span>
+                  <span className="text-[#F5F5F7] font-semibold text-sm">04h 32m</span>
+                </div>
+                <div className="bg-[#0B101B] p-2.5 rounded-md border border-[#292D36]">
+                  <span className="text-[#969DAA] text-[10px] uppercase block">Overcurrent Trips</span>
+                  <span className="text-[#00E5E5] font-semibold text-sm">0 alarms</span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span>Total Zones: 24 active / 0 faulted</span>
-                <span>Max Deviation: ±1.2°C</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Overcurrent Alarm Count: 0</span>
-                <span>Sampling Interval: 1.0s</span>
-              </div>
-              <div className="flex justify-between text-[#969DAA] pt-1 border-t border-[#292D36]">
-                <span>Supervisor: S. Verma (#1084)</span>
-                <span>Digital Hash: verified</span>
+
+              {/* Recipe */}
+              <div className="flex items-center justify-between text-xs font-mono pt-1 border-t border-[#292D36]">
+                <span className="text-[#969DAA]">Recipe:</span>
+                <span className="text-[#F5F5F7] font-medium">3-Stage Epoxy Cure (75°C – 90°C)</span>
               </div>
             </div>
 
-            <p className="text-[#969DAA] text-[11px] font-sans leading-relaxed">
-              Sample output from production cure cycle. Creates tamper-evident batch records formatted for ISO 9001 quality audits and prime turbine customer verification.
-            </p>
-
-            <div className="pt-1">
-              <a
-                href="/demo/"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('/demo/');
-                }}
-                className="text-xs font-medium text-[#00E5E5] hover:underline inline-flex items-center"
-              >
-                <span>Explore Software Screenshots in Demo Gallery</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </a>
+            {/* Footer note */}
+            <div className="space-y-1 pt-1">
+              <div className="flex items-center gap-1.5 text-xs text-[#00E5E5] font-sans font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5E5] shrink-0" />
+                <span>Sample from actual production run – October 2026</span>
+              </div>
+              <p className="text-[#969DAA] text-[11px] font-sans leading-relaxed">
+                Tamper-evident batch record formatted for ISO 9001 audits.
+              </p>
             </div>
           </div>
         </div>
@@ -713,9 +707,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
           "Let's Discuss Your Industrial Requirements"
           ========================================================================= */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl bg-gradient-to-b from-[#080D18] to-[#0B101B] border border-[#292D36] p-8 sm:p-14 text-[#F5F5F7] text-center space-y-6 overflow-hidden">
+        <div className="dark-section relative rounded-2xl bg-gradient-to-b from-[#080D18] to-[#0B101B] border border-[#292D36] p-8 sm:p-14 text-[#F5F5F7] text-center space-y-6 overflow-hidden">
           {/* Subtle Ambient Light Aura in CTA card */}
-          <div 
+          <div
             className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#00E5E5]/10 rounded-full blur-[100px] pointer-events-none"
             aria-hidden="true"
           />
@@ -724,7 +718,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-medium block">
               Direct Engineering Engagement
             </span>
-            <h2 
+            <h2
               className="text-2xl sm:text-3xl lg:text-[40px] font-light tracking-tight text-white max-w-2xl mx-auto leading-tight"
               style={{ textWrap: 'balance' }}
             >

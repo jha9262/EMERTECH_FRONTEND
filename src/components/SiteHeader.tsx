@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, ChevronDown, X, Menu } from 'lucide-react';
+import { Search, ChevronDown, X, Moon, Sun } from 'lucide-react';
 import { MegaMenu, MegaMenuType } from './MegaMenu';
+import { BrandLogo } from './BrandLogo';
 
 interface SiteHeaderProps {
   currentPath?: string;
@@ -10,8 +11,23 @@ interface SiteHeaderProps {
 export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
   const [activeMegaMenu, setActiveMegaMenu] = useState<MegaMenuType>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('emertech-theme');
+    const lightMode = savedTheme === 'light';
+    setIsLightMode(lightMode);
+    document.documentElement.classList.toggle('theme-light', lightMode);
+  }, []);
+
+  const toggleTheme = () => {
+    const nextIsLightMode = !isLightMode;
+    setIsLightMode(nextIsLightMode);
+    window.localStorage.setItem('emertech-theme', nextIsLightMode ? 'light' : 'dark');
+    document.documentElement.classList.toggle('theme-light', nextIsLightMode);
+  };
 
   // Close mega menu when clicking outside or pressing Escape
   useEffect(() => {
@@ -101,24 +117,13 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
               )}
             </button>
 
-            {/* Emertech Brand Logo (Preserved authentic #FF5A00 branding) */}
             <a
               href="/"
               onClick={(e) => handleLinkClick(e, '/')}
               className="flex items-center space-x-3 group shrink-0"
               aria-label="Emertech Electronics Home"
             >
-              <div className="w-9 h-9 rounded-xl bg-[#FF5A00] text-white flex items-center justify-center font-bold text-base tracking-wider shadow-sm group-hover:opacity-90 transition-opacity">
-                ET
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-extrabold tracking-tight text-white group-hover:text-[#00E5E5] transition-colors uppercase">
-                  EMERTECH
-                </span>
-                <span className="text-[10px] font-semibold tracking-wider text-[#969DAA] uppercase -mt-1 font-mono">
-                  ELECTRONICS
-                </span>
-              </div>
+              <BrandLogo />
             </a>
           </div>
 
@@ -283,13 +288,18 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
 
           {/* Right Controls: EPAM-style Theme Pill & Search Icon (No Request a Quote button) */}
           <div className="flex items-center space-x-4 shrink-0">
-            {/* Visual EPAM theme pill indicator */}
-            <div 
-              className="hidden sm:flex items-center w-11 h-6 rounded-full border border-[#41434A] bg-[#0B101B] p-0.5 cursor-default"
-              title="Dark Mode Active"
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="hidden sm:flex items-center w-11 h-6 rounded-full border border-[#41434A] bg-[#0B101B] p-0.5 transition-colors hover:border-[#00E5E5] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5]"
+              title={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-pressed={isLightMode}
             >
-              <div className="w-4 h-4 rounded-full bg-[#00E5E5] shadow-xs" />
-            </div>
+              <span className={`flex items-center justify-center w-4 h-4 rounded-full bg-[#00E5E5] text-[#050505] shadow-xs transition-transform ${isLightMode ? 'translate-x-5' : ''}`}>
+                {isLightMode ? <Sun className="w-2.5 h-2.5" /> : <Moon className="w-2.5 h-2.5" />}
+              </span>
+            </button>
 
             {/* Search Icon */}
             <button
@@ -311,7 +321,15 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
       <MegaMenu 
         activeMenu={activeMegaMenu} 
         onClose={() => setActiveMegaMenu(null)} 
-        onNavigate={handleLinkClick as any}
+        onNavigate={(path) => {
+          setActiveMegaMenu(null);
+          setMobileMenuOpen(false);
+          if (onNavigate) {
+            onNavigate(path);
+          } else {
+            window.location.href = path;
+          }
+        }}
       />
 
       {/* Mobile Responsive Navigation Drawer */}

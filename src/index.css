@@ -64,3 +64,71 @@
   border-radius: inherit;
   background: linear-gradient(100deg, #00E5E5 0%, #087BFF 55%, #A855F7 100%);
 }
+
+html.theme-light,
+html.theme-light body {
+  background-color: #FFFFFF;
+  color: #080808;
+}
+
+html.theme-light [class*="bg-[#050505]"]:not(.dark-section):not(.dark-section *) {
+  background-color: #FFFFFF !important;
+}
+
+html.theme-light [class*="bg-[#020610]"]:not(.dark-section):not(.dark-section *) {
+  background-color: #FFFFFF !important;
+}
+
+html.theme-light [class*="bg-[#0B101B]"]:not(.dark-section):not(.dark-section *) {
+  background-color: #FAFAFC !important;
+}
+
+html.theme-light [class*="bg-[#080D18]"]:not(.dark-section):not(.dark-section *) {
+  background-color: #F7F7FA !important;
+}
+
+html.theme-light [class*="text-[#F5F5F7]"]:not(.dark-section):not(.dark-section *),
+html.theme-light [class*="text-white"]:not(.dark-section):not(.dark-section *) {
+  color: #080808 !important;
+}
+
+html.theme-light [class*="text-[#C2C6D0]"]:not(.dark-section):not(.dark-section *) {
+  color: #484852 !important;
+}
+
+html.theme-light [class*="text-[#969DAA]"]:not(.dark-section):not(.dark-section *) {
+  color: #72727C !important;
+}
+
+html.theme-light [class*="border-[#41434A]"]:not(.dark-section):not(.dark-section *),
+html.theme-light [class*="border-[#292D36]"]:not(.dark-section):not(.dark-section *) {
+  border-color: #E5E5EA !important;
+}
+
+/* Keep light mode close to the reference's crisp white canvas and restrained chrome. */
+html.theme-light .epam-gradient-text {
+  background-image: linear-gradient(100deg, #1674D1 0%, #303BFF 58%, #9851D8 100%);
+}
+
+html.theme-light .home-hero-title {
+  font-size: clamp(3rem, 5.2vw, 4.8rem) !important;
+  line-height: 1.2 !important;
+  color: #080808 !important;
+}
+
+html.theme-light header.sticky {
+  background-color: #FFFFFF !important;
+  border-color: #E5E5EA !important;
+}
+
+html.theme-light header.sticky [class*="text-[#00E5E5]"] {
+  color: #3157E8 !important;
+}
+
+html.theme-light header.sticky [class*="bg-[#0B101B]"] {
+  background-color: #FFFFFF !important;
+}
+
+html.theme-light header.sticky [class*="border-[#41434A]"] {
+  border-color: #171717 !important;
+}
