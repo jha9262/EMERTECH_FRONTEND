@@ -101,14 +101,14 @@ export function SiteHeader({ currentPath = '/', onNavigate }: SiteHeaderProps) {
               )}
             </button>
 
-            {/* Emertech Brand Logo (Kept authentic & unchanged) */}
+            {/* Emertech Brand Logo (Preserved authentic #FF5A00 branding) */}
             <a
               href="/"
               onClick={(e) => handleLinkClick(e, '/')}
               className="flex items-center space-x-3 group shrink-0"
               aria-label="Emertech Electronics Home"
             >
-              <div className="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-base tracking-wider shadow-sm group-hover:bg-orange-500 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-[#FF5A00] text-white flex items-center justify-center font-bold text-base tracking-wider shadow-sm group-hover:opacity-90 transition-opacity">
                 ET
               </div>
               <div className="flex flex-col">

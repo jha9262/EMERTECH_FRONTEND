@@ -83,20 +83,20 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 sm:p-8">
-      <div className="mb-6 pb-4 border-b border-slate-100 flex items-center justify-between">
+    <div className="bg-[#0B101B] rounded-2xl border border-[#292D36] shadow-xl p-6 sm:p-8">
+      <div className="mb-6 pb-4 border-b border-[#292D36] flex items-center justify-between">
         <div>
-          <h3 className="text-base sm:text-lg font-bold text-slate-900">
+          <h3 className="text-base sm:text-lg font-bold text-[#F5F5F7]">
             Send an Enquiry
           </h3>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-[#969DAA] mt-0.5">
             Directly transmitted to Emertech Electronics engineering desk in Vadodara.
           </p>
         </div>
         <button
           type="button"
           onClick={() => setShowConfigGuide(!showConfigGuide)}
-          className="text-xs text-slate-500 hover:text-slate-800 flex items-center space-x-1 p-1.5 rounded hover:bg-slate-100 transition-colors cursor-pointer"
+          className="text-xs text-[#969DAA] hover:text-[#00E5E5] flex items-center space-x-1 p-1.5 rounded hover:bg-[#050505] transition-colors cursor-pointer"
           title="Configure webhook CRM endpoint"
         >
           <Settings className="w-3.5 h-3.5" />
@@ -105,13 +105,13 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
       </div>
 
       {showConfigGuide && (
-        <div className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-2">
-          <div className="font-semibold text-slate-900 flex items-center space-x-1.5">
-            <HelpCircle className="w-4 h-4 text-orange-600" />
+        <div className="mb-6 p-4 bg-[#050505] border border-[#292D36] rounded-xl text-xs space-y-2">
+          <div className="font-semibold text-[#F5F5F7] flex items-center space-x-1.5">
+            <HelpCircle className="w-4 h-4 text-[#00E5E5]" />
             <span>Static Contact Form Endpoint Configuration</span>
           </div>
-          <p className="text-slate-600 leading-relaxed">
-            By default, submitting launches your default email client pre-filled with all project details addressed to <code className="font-mono bg-white px-1 py-0.5 border rounded">{COMPANY_INFO.email}</code>. To route inquiries to an automated webhook (e.g. Formspree or HubSpot):
+          <p className="text-[#C2C6D0] leading-relaxed">
+            By default, submitting launches your default email client pre-filled with all project details addressed to <code className="font-mono bg-[#0B101B] text-[#00E5E5] px-1 py-0.5 border border-[#292D36] rounded">{COMPANY_INFO.email}</code>. To route inquiries to an automated webhook (e.g. Formspree or HubSpot):
           </p>
           <div className="flex items-center space-x-2 pt-1">
             <input
@@ -119,7 +119,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
               placeholder="https://formspree.io/f/your_form_id"
               value={endpointUrl}
               onChange={(e) => setEndpointUrl(e.target.value)}
-              className="flex-1 px-3 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-orange-500"
+              className="flex-1 px-3 py-1.5 bg-[#080D18] border border-[#41434A] rounded text-xs font-mono text-[#F5F5F7] focus:ring-1 focus:ring-[#00E5E5] focus:border-[#00E5E5]"
             />
           </div>
         </div>
@@ -127,30 +127,30 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
 
       {submittedData ? (
         <div className="py-8 text-center space-y-4">
-          <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="w-12 h-12 bg-[#00E5E5]/10 text-[#00E5E5] border border-[#00E5E5]/30 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
-            <h4 className="text-base font-bold text-slate-900">
+            <h4 className="text-base font-bold text-[#F5F5F7]">
               Enquiry Prepared &amp; Email Client Launched
             </h4>
-            <p className="text-xs text-slate-600 mt-1 max-w-md mx-auto">
-              Your inquiry has been compiled and transferred to your email application addressed to <strong className="text-slate-900">{COMPANY_INFO.email}</strong>.
+            <p className="text-xs text-[#C2C6D0] mt-1 max-w-md mx-auto">
+              Your inquiry has been compiled and transferred to your email application addressed to <strong className="text-[#F5F5F7]">{COMPANY_INFO.email}</strong>.
             </p>
           </div>
 
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 max-w-md mx-auto text-left text-xs font-mono space-y-1 text-slate-700">
-            <div><span className="text-slate-400">Name:</span> {submittedData.fullName}</div>
-            <div><span className="text-slate-400">Product:</span> {submittedData.productInterest}</div>
-            <div><span className="text-slate-400">Email:</span> {submittedData.email}</div>
-            <div><span className="text-slate-400">Phone:</span> {submittedData.phone || 'N/A'}</div>
+          <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36] max-w-md mx-auto text-left text-xs font-mono space-y-1 text-[#C2C6D0]">
+            <div><span className="text-[#969DAA]">Name:</span> {submittedData.fullName}</div>
+            <div><span className="text-[#969DAA]">Product:</span> {submittedData.productInterest}</div>
+            <div><span className="text-[#969DAA]">Email:</span> {submittedData.email}</div>
+            <div><span className="text-[#969DAA]">Phone:</span> {submittedData.phone || 'N/A'}</div>
           </div>
 
           <div className="pt-2">
             <button
               type="button"
               onClick={() => setSubmittedData(null)}
-              className="px-4 py-2 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg cursor-pointer"
+              className="px-4 py-2 text-xs font-medium text-[#F5F5F7] bg-[#050505] hover:bg-[#080D18] border border-[#41434A] hover:border-[#00E5E5] rounded-lg cursor-pointer transition-colors"
             >
               Send Another Enquiry
             </button>
@@ -161,8 +161,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Full Name */}
             <div>
-              <label htmlFor="fullName" className="block text-xs font-semibold text-slate-700 mb-1">
-                Full Name <span className="text-red-500">*</span>
+              <label htmlFor="fullName" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
+                Full Name <span className="text-red-400">*</span>
               </label>
               <input
                 type="text"
@@ -172,19 +172,19 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.fullName}
                 onChange={handleChange}
                 placeholder="e.g. Rajesh Patel"
-                className={`w-full px-3.5 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                  errors.fullName ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                  errors.fullName ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
                 }`}
               />
               {errors.fullName && (
-                <p className="text-[11px] text-red-600 mt-1">{errors.fullName}</p>
+                <p className="text-[11px] text-red-400 mt-1">{errors.fullName}</p>
               )}
             </div>
 
             {/* Corporate Email */}
             <div>
-              <label htmlFor="email" className="block text-xs font-semibold text-slate-700 mb-1">
-                Corporate Email <span className="text-red-500">*</span>
+              <label htmlFor="email" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
+                Corporate Email <span className="text-red-400">*</span>
               </label>
               <input
                 type="email"
@@ -194,12 +194,12 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.email}
                 onChange={handleChange}
                 placeholder="name@company.com"
-                className={`w-full px-3.5 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                  errors.email ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                  errors.email ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
                 }`}
               />
               {errors.email && (
-                <p className="text-[11px] text-red-600 mt-1">{errors.email}</p>
+                <p className="text-[11px] text-red-400 mt-1">{errors.email}</p>
               )}
             </div>
           </div>
@@ -207,8 +207,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Phone (Optional) */}
             <div>
-              <label htmlFor="phone" className="block text-xs font-semibold text-slate-700 mb-1">
-                Phone Number <span className="text-slate-400 font-normal">(Optional)</span>
+              <label htmlFor="phone" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
+                Phone Number <span className="text-[#969DAA] font-normal">(Optional)</span>
               </label>
               <input
                 type="tel"
@@ -217,18 +217,18 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.phone}
                 onChange={handleChange}
                 placeholder="+91 98765 43210"
-                className={`w-full px-3.5 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                  errors.phone ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+                className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                  errors.phone ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
                 }`}
               />
               {errors.phone && (
-                <p className="text-[11px] text-red-600 mt-1">{errors.phone}</p>
+                <p className="text-[11px] text-red-400 mt-1">{errors.phone}</p>
               )}
             </div>
 
             {/* Company Name */}
             <div>
-              <label htmlFor="companyName" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="companyName" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
                 Company / Organization
               </label>
               <input
@@ -238,7 +238,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 value={formValues.companyName}
                 onChange={handleChange}
                 placeholder="e.g. Apex Engineering Ltd"
-                className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border border-[#41434A] rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
               />
             </div>
           </div>
@@ -246,7 +246,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Product Interest Selector */}
             <div>
-              <label htmlFor="productInterest" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="productInterest" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
                 Product Interest
               </label>
               <select
@@ -254,7 +254,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 name="productInterest"
                 value={formValues.productInterest}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                className="w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] border border-[#41434A] rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
               >
                 <option value="DCN & Heat Controller">DCN &amp; Heat Controller</option>
                 <option value="Fluxora">Fluxora (Blade Heating System)</option>
@@ -272,7 +272,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
 
             {/* Inquiry Type */}
             <div>
-              <label htmlFor="inquiryType" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="inquiryType" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
                 Inquiry Type
               </label>
               <select
@@ -280,7 +280,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
                 name="inquiryType"
                 value={formValues.inquiryType}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                className="w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] border border-[#41434A] rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
               >
                 <option value="Commercial Quotation">Commercial Quotation (RFQ)</option>
                 <option value="Technical Demonstration">Technical Demonstration</option>
@@ -293,8 +293,8 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
 
           {/* Message */}
           <div>
-            <label htmlFor="message" className="block text-xs font-semibold text-slate-700 mb-1">
-              Message &amp; Project Requirements <span className="text-red-500">*</span>
+            <label htmlFor="message" className="block text-xs font-semibold text-[#C2C6D0] mb-1">
+              Message &amp; Project Requirements <span className="text-red-400">*</span>
             </label>
             <textarea
               id="message"
@@ -304,12 +304,12 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
               value={formValues.message}
               onChange={handleChange}
               placeholder="Describe your site parameters, number of dispensers or meters, heating mould size, or software requirements..."
-              className={`w-full px-3.5 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                errors.message ? 'border-red-500 bg-red-50/30' : 'border-slate-300'
+              className={`w-full px-3.5 py-2 text-sm bg-[#050505] text-[#F5F5F7] placeholder-[#969DAA]/60 border rounded-lg focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                errors.message ? 'border-red-500 bg-red-950/20' : 'border-[#41434A]'
               }`}
             />
             {errors.message && (
-              <p className="text-[11px] text-red-600 mt-1">{errors.message}</p>
+              <p className="text-[11px] text-red-400 mt-1">{errors.message}</p>
             )}
           </div>
 
@@ -317,7 +317,7 @@ export function ContactForm({ initialProduct = 'DCN & Heat Controller' }: Contac
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 active:bg-orange-700 rounded-lg transition-colors shadow-sm cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#00E5E5] via-[#087BFF] to-[#A855F7] hover:opacity-95 rounded-lg transition-all shadow-md cursor-pointer"
             >
               <Send className="w-4 h-4 mr-2" />
               <span>Submit Project Enquiry</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Home, Package, Mail } from 'lucide-react';
+import { Home, Package, Mail } from 'lucide-react';
 
 interface NotFoundPageProps {
   onNavigate: (path: string) => void;
@@ -7,17 +7,17 @@ interface NotFoundPageProps {
 
 export function NotFoundPage({ onNavigate }: NotFoundPageProps) {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center space-y-6">
-        <div className="w-16 h-16 rounded-full bg-orange-50 text-orange-600 font-mono font-bold text-2xl flex items-center justify-center mx-auto">
+    <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-[#050505]">
+      <div className="max-w-md w-full bg-[#0B101B] rounded-2xl border border-[#292D36] p-8 shadow-xl text-center space-y-6">
+        <div className="w-16 h-16 rounded-full bg-[#00E5E5]/10 text-[#00E5E5] border border-[#00E5E5]/30 font-mono font-bold text-2xl flex items-center justify-center mx-auto">
           404
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-light text-[#F5F5F7] tracking-tight">
             Page Not Found
           </h1>
-          <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+          <p className="text-xs text-[#C2C6D0] mt-2 leading-relaxed">
             The technical document or corporate page you are seeking does not exist or has been relocated within the Emertech catalogue.
           </p>
         </div>
@@ -26,7 +26,7 @@ export function NotFoundPage({ onNavigate }: NotFoundPageProps) {
           <button
             type="button"
             onClick={() => onNavigate('/')}
-            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 rounded transition-colors"
+            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-[#00E5E5] hover:bg-[#00E5E5]/90 rounded-lg transition-colors"
           >
             <Home className="w-4 h-4 mr-2" />
             <span>Return to Homepage</span>
@@ -35,16 +35,16 @@ export function NotFoundPage({ onNavigate }: NotFoundPageProps) {
           <button
             type="button"
             onClick={() => onNavigate('/hardware/')}
-            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-700 bg-slate-100 hover:bg-slate-200 rounded transition-colors"
+            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] bg-[#050505] hover:bg-[#151D2E] border border-[#41434A] rounded-lg transition-colors"
           >
-            <Package className="w-4 h-4 mr-2 text-slate-500" />
+            <Package className="w-4 h-4 mr-2 text-[#969DAA]" />
             <span>Browse Hardware</span>
           </button>
 
           <button
             type="button"
             onClick={() => onNavigate('/contact/')}
-            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-orange-600 bg-orange-50 hover:bg-orange-100 rounded transition-colors"
+            className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#00E5E5] bg-[#050505] hover:bg-[#00E5E5]/10 border border-[#00E5E5]/40 rounded-lg transition-colors"
           >
             <Mail className="w-4 h-4 mr-2" />
             <span>Contact Engineering Desk</span>

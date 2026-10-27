@@ -22,7 +22,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
     {
       id: 'wind-composites',
       title: 'Wind Turbine Blade Manufacturing & Composites',
-      icon: <Wind className="w-6 h-6 text-orange-600" />,
+      icon: <Wind className="w-6 h-6 text-[#00E5E5]" />,
       tagline: 'Precision thermal cure cycles and dynamic 3-blade rotor balancing',
       description: 'Wind turbine blade fabrication requires stringent quality assurance during exothermic resin curing and precise physical balancing of completed blades before dispatch to installation towers.',
       operationalFocus: [
@@ -40,7 +40,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
     {
       id: 'thermal-processing',
       title: 'Thermal Processing & Industrial Heating Systems',
-      icon: <Flame className="w-6 h-6 text-orange-600" />,
+      icon: <Flame className="w-6 h-6 text-[#00E5E5]" />,
       tagline: 'Non-intrusive telemetry tap-in for existing PID temperature loops',
       description: 'Continuous and batch thermal processes (curing ovens, industrial drying blankets, heat-treatment tunnels) demand constant temperature surveillance without disrupting certified safety circuits.',
       operationalFocus: [
@@ -57,7 +57,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
     {
       id: 'plant-safety',
       title: 'Industrial Facilities & Plant Safety Management',
-      icon: <ShieldAlert className="w-6 h-6 text-orange-600" />,
+      icon: <ShieldAlert className="w-6 h-6 text-[#00E5E5]" />,
       tagline: 'Centralized evacuation sirens, emergency egress, and hazard interlocking',
       description: 'Large manufacturing plants and chemical process facilities require coordinated fire alarm staging, automated ventilation shut-offs, and fail-safe emergency egress management.',
       operationalFocus: [
@@ -74,7 +74,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
     {
       id: 'discrete-manufacturing',
       title: 'Discrete Manufacturing, Tooling & Energy Operations',
-      icon: <Factory className="w-6 h-6 text-orange-600" />,
+      icon: <Factory className="w-6 h-6 text-[#00E5E5]" />,
       tagline: 'End-to-end shop-floor visibility, tool calibration, and energy analytics',
       description: 'Heavy fabrication, electrical panel assembly, and precision machining shops need unified tracking for work-in-progress, critical tooling calibration, and energy demand charges.',
       operationalFocus: [
@@ -97,27 +97,27 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
   return (
     <div className="space-y-16 pb-20">
       {/* Top Banner / Breadcrumbs */}
-      <div className="bg-white border-b border-slate-200 pt-8 pb-12">
+      <div className="bg-[#020610] border-b border-[#292D36] pt-8 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <Breadcrumbs
             items={[
               { label: 'Industries' }
             ]}
             onNavigate={onNavigate}
-            dark={false}
+            dark={true}
           />
 
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold block mb-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#00E5E5] font-semibold block mb-2">
               Supported Industrial Sectors
             </span>
             <h1 
-              className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight"
+              className="text-3xl sm:text-4xl font-light tracking-tight text-[#F5F5F7] leading-tight"
               style={{ textWrap: 'balance' }}
             >
-              Engineered for Demanding Industrial Operations
+              Engineered for <span className="epam-gradient-text font-normal">Demanding Industrial Operations</span>
             </h1>
-            <p className="mt-4 text-base text-slate-600 leading-relaxed">
+            <p className="mt-4 text-base text-[#C2C6D0] leading-relaxed">
               Emertech provides robust industrial hardware and software solutions specifically suited to manufacturing, composite processing, process heating, and plant safety environments.
             </p>
           </div>
@@ -130,37 +130,37 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
           {industries.map((ind) => (
             <div
               key={ind.id}
-              className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-xs hover:border-slate-300 transition-all"
+              className="bg-[#0B101B] rounded-xl border border-[#292D36] p-6 sm:p-8 hover:border-[#41434A] transition-all"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left: Overview & Scope */}
                 <div className="lg:col-span-7 space-y-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#050505] border border-[#292D36] flex items-center justify-center shrink-0">
                       {ind.icon}
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold text-slate-900">
+                      <h2 className="text-xl font-bold text-[#F5F5F7]">
                         {ind.title}
                       </h2>
-                      <p className="text-xs text-orange-600 font-medium mt-0.5">
+                      <p className="text-xs text-[#00E5E5] font-medium mt-0.5">
                         {ind.tagline}
                       </p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-[#C2C6D0] leading-relaxed">
                     {ind.description}
                   </p>
 
                   <div className="pt-2">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-3">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#969DAA] font-bold mb-3">
                       Operational Applications &amp; Focus
                     </h4>
                     <ul className="space-y-2">
                       {ind.operationalFocus.map((point, idx) => (
-                        <li key={idx} className="flex items-start space-x-2 text-xs text-slate-700">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <li key={idx} className="flex items-start space-x-2 text-xs text-[#C2C6D0]">
+                          <Check className="w-4 h-4 text-[#00E5E5] shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -169,9 +169,9 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
                 </div>
 
                 {/* Right: Associated Solutions & Hardware */}
-                <div className="lg:col-span-5 bg-slate-50/80 rounded-xl p-6 border border-slate-200/80 space-y-5">
+                <div className="lg:col-span-5 bg-[#080D18] rounded-xl p-6 border border-[#292D36] space-y-5">
                   <div>
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-slate-700 font-bold mb-3">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#F5F5F7] font-bold mb-3">
                       Applicable Products &amp; Platforms
                     </h4>
                     <div className="space-y-2">
@@ -183,30 +183,30 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
                             e.preventDefault();
                             onNavigate(p.route);
                           }}
-                          className="flex items-center justify-between p-3 rounded-lg bg-white border border-slate-200 hover:border-orange-500 hover:shadow-2xs transition-all group"
+                          className="flex items-center justify-between p-3 rounded-lg bg-[#050505] border border-[#292D36] hover:border-[#00E5E5] transition-all group"
                         >
                           <div>
-                            <span className="text-xs font-bold text-slate-900 group-hover:text-orange-600 transition-colors block">
+                            <span className="text-xs font-bold text-[#F5F5F7] group-hover:text-[#00E5E5] transition-colors block">
                               {p.name}
                             </span>
-                            <span className="text-[10px] text-slate-500 font-mono">
+                            <span className="text-[10px] text-[#969DAA] font-mono">
                               {p.type}
                             </span>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-orange-600 transition-colors" />
+                          <ArrowRight className="w-4 h-4 text-[#969DAA] group-hover:text-[#00E5E5] transition-colors" />
                         </a>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-slate-200">
+                  <div className="pt-2 border-t border-[#292D36]">
                     <a
                       href="/contact/"
                       onClick={(e) => {
                         e.preventDefault();
                         onNavigate('/contact/');
                       }}
-                      className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg transition-colors shadow-xs"
+                      className="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-[#00E5E5] hover:bg-[#00E5E5]/90 rounded-lg transition-colors font-medium shadow-xs"
                     >
                       <span>Discuss Your Industry Application</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -221,17 +221,17 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
 
       {/* Direct CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 rounded-2xl p-8 sm:p-12 text-white text-center space-y-6">
-          <span className="text-xs font-mono uppercase tracking-widest text-orange-400 font-semibold block">
+        <div className="bg-[#0B101B] border border-[#292D36] rounded-2xl p-8 sm:p-12 text-[#F5F5F7] text-center space-y-6">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-semibold block">
             Direct Engineering Support
           </span>
           <h3 
-            className="text-2xl sm:text-3xl font-bold tracking-tight text-white max-w-2xl mx-auto"
+            className="text-2xl sm:text-3xl font-light tracking-tight text-[#F5F5F7] max-w-2xl mx-auto"
             style={{ textWrap: 'balance' }}
           >
-            Looking for an Engineered Solution for Your Facility?
+            Looking for an <span className="epam-gradient-text font-normal">Engineered Solution</span> for Your Facility?
           </h3>
-          <p className="text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-[#C2C6D0] max-w-xl mx-auto leading-relaxed">
             Contact our engineering team in Vadodara to evaluate your plant's instrumentation, control loops, and software requirements.
           </p>
 
@@ -242,7 +242,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
                 e.preventDefault();
                 onNavigate('/contact/');
               }}
-              className="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg transition-colors shadow-sm"
+              className="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-black bg-[#00E5E5] hover:bg-[#00E5E5]/90 rounded-lg transition-colors font-medium shadow-sm"
             >
               <span>Request a Quote</span>
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -254,7 +254,7 @@ export function IndustriesPage({ onNavigate }: IndustriesPageProps) {
                 e.preventDefault();
                 onNavigate('/services/');
               }}
-              className="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] hover:text-[#00E5E5] bg-[#050505] hover:bg-[#080D18] border border-[#41434A] rounded-lg transition-colors"
             >
               <span>View Engineering Services</span>
             </a>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, Phone, Mail, MapPin, Send, AlertCircle, ArrowRight } from 'lucide-react';
+import { X, CheckCircle2, Phone, Mail, MapPin, AlertCircle, ArrowRight } from 'lucide-react';
 
 interface QuoteDrawerProps {
   isOpen: boolean;
@@ -104,27 +104,27 @@ export function QuoteDrawer({
     <div className="fixed inset-0 z-50 flex justify-end" aria-labelledby="quote-drawer-title" role="dialog" aria-modal="true">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Drawer Container */}
-      <div className="relative w-full max-w-xl bg-white shadow-2xl h-full flex flex-col z-10 overflow-hidden transform transition-transform duration-300 ease-out border-l border-slate-200">
+      <div className="relative w-full max-w-xl bg-[#0B101B] text-[#F5F5F7] shadow-2xl h-full flex flex-col z-10 overflow-hidden transform transition-transform duration-300 ease-out border-l border-[#292D36]">
         {/* Header */}
-        <div className="px-6 py-5 bg-[#050816] text-white flex items-center justify-between border-b border-slate-800 shrink-0">
+        <div className="px-6 py-5 bg-[#050505] text-[#F5F5F7] flex items-center justify-between border-b border-[#292D36] shrink-0">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-orange-400 font-semibold block">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[#00E5E5] font-semibold block">
               ENGINEERING QUOTATION &amp; CONSULTATION
             </span>
-            <h2 id="quote-drawer-title" className="text-xl font-bold tracking-tight text-white mt-0.5">
+            <h2 id="quote-drawer-title" className="text-xl font-medium tracking-tight text-[#F5F5F7] mt-0.5">
               Request Hardware Quotation
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+            className="w-9 h-9 rounded-lg bg-[#0B101B] hover:bg-[#151D2E] text-[#969DAA] hover:text-[#F5F5F7] flex items-center justify-center transition-colors border border-[#292D36] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5E5]"
             aria-label="Close quote drawer"
           >
             <X className="w-5 h-5" />
@@ -135,34 +135,34 @@ export function QuoteDrawer({
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {submitted ? (
             <div className="py-8 text-center space-y-6 animate-fade-in">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border-2 border-emerald-200">
+              <div className="w-16 h-16 rounded-full bg-[#00E5E5]/10 text-[#00E5E5] flex items-center justify-center mx-auto border border-[#00E5E5]/30">
                 <CheckCircle2 className="w-9 h-9" />
               </div>
 
               <div className="space-y-2 max-w-md mx-auto">
-                <h3 className="text-2xl font-bold text-slate-900">Quotation Request Received</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Thank you, <strong className="text-slate-900">{formData.fullName}</strong>. Our engineering team at Vadodara has received your hardware specification details for <strong className="text-slate-900">{formData.company}</strong>.
+                <h3 className="text-2xl font-light text-[#F5F5F7]">Quotation Request Received</h3>
+                <p className="text-sm text-[#C2C6D0] leading-relaxed">
+                  Thank you, <strong className="text-[#F5F5F7] font-semibold">{formData.fullName}</strong>. Our engineering team at Vadodara has received your hardware specification details for <strong className="text-[#F5F5F7] font-semibold">{formData.company}</strong>.
                 </p>
               </div>
 
               {/* Response SLA Card */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 text-left text-xs space-y-3">
-                <div className="flex items-center text-slate-900 font-bold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse" />
+              <div className="bg-[#050505] border border-[#292D36] rounded-xl p-5 text-left text-xs space-y-3">
+                <div className="flex items-center text-[#F5F5F7] font-medium">
+                  <span className="w-2 h-2 rounded-full bg-[#00E5E5] mr-2 animate-pulse" />
                   Direct Engineer-to-Engineer Response SLA
                 </div>
-                <p className="text-slate-600 leading-relaxed">
-                  A hardware application engineer will review your controller compatibility and prepare a formal quotation + pinout diagram within <strong className="text-slate-900">1 business day</strong>.
+                <p className="text-[#C2C6D0] leading-relaxed">
+                  A hardware application engineer will review your controller compatibility and prepare a formal quotation + pinout diagram within <strong className="text-[#00E5E5]">1 business day</strong>.
                 </p>
-                <div className="pt-2 border-t border-slate-200 space-y-2">
-                  <div className="flex items-center text-slate-700">
-                    <Phone className="w-3.5 h-3.5 text-orange-600 mr-2 shrink-0" />
-                    <span>Call our engineering lab: <strong className="text-slate-900">+91 83208 45947</strong></span>
+                <div className="pt-2 border-t border-[#292D36] space-y-2">
+                  <div className="flex items-center text-[#C2C6D0]">
+                    <Phone className="w-3.5 h-3.5 text-[#00E5E5] mr-2 shrink-0" />
+                    <span>Call our engineering lab: <strong className="text-[#F5F5F7]">+91 83208 45947</strong></span>
                   </div>
-                  <div className="flex items-center text-slate-700">
-                    <Mail className="w-3.5 h-3.5 text-orange-600 mr-2 shrink-0" />
-                    <span>Direct engineering email: <strong className="text-slate-900">emertechelectronics@gmail.com</strong></span>
+                  <div className="flex items-center text-[#C2C6D0]">
+                    <Mail className="w-3.5 h-3.5 text-[#00E5E5] mr-2 shrink-0" />
+                    <span>Direct engineering email: <strong className="text-[#F5F5F7]">emertechelectronics@gmail.com</strong></span>
                   </div>
                 </div>
               </div>
@@ -170,15 +170,15 @@ export function QuoteDrawer({
               <button
                 type="button"
                 onClick={handleReset}
-                className="inline-flex items-center justify-center px-6 py-2.5 bg-orange-600 hover:bg-orange-500 text-white text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors"
+                className="inline-flex items-center justify-center px-6 py-2.5 bg-[#00E5E5] hover:bg-[#00E5E5]/90 text-black text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors"
               >
                 Done
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-              <div className="bg-orange-50/60 border border-orange-200/80 rounded-xl p-4 text-xs text-orange-950 flex items-start space-x-3">
-                <div className="w-5 h-5 rounded-full bg-orange-200 text-orange-800 flex items-center justify-center shrink-0 mt-0.5 font-bold font-mono text-[10px]">
+              <div className="bg-[#050505] border border-[#292D36] rounded-xl p-4 text-xs text-[#C2C6D0] flex items-start space-x-3">
+                <div className="w-5 h-5 rounded-full bg-[#00E5E5]/10 border border-[#00E5E5]/30 text-[#00E5E5] flex items-center justify-center shrink-0 mt-0.5 font-bold font-mono text-[10px]">
                   i
                 </div>
                 <div className="leading-relaxed">
@@ -189,8 +189,8 @@ export function QuoteDrawer({
               {/* Contact Information */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
-                    Full Name <span className="text-red-500">*</span>
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
+                    Full Name <span className="text-[#00E5E5]">*</span>
                   </label>
                   <input
                     type="text"
@@ -198,20 +198,20 @@ export function QuoteDrawer({
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="e.g. Ramesh Patel"
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                      errors.fullName ? 'border-red-500' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                      errors.fullName ? 'border-red-500' : 'border-[#41434A]'
                     }`}
                   />
                   {errors.fullName && (
-                    <span className="text-[11px] text-red-600 mt-1 flex items-center">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center">
                       <AlertCircle className="w-3 h-3 mr-1" /> {errors.fullName}
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
-                    Company / Plant Name <span className="text-red-500">*</span>
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
+                    Company / Plant Name <span className="text-[#00E5E5]">*</span>
                   </label>
                   <input
                     type="text"
@@ -219,12 +219,12 @@ export function QuoteDrawer({
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. LM Wind Power / Suzlon"
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                      errors.company ? 'border-red-500' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                      errors.company ? 'border-red-500' : 'border-[#41434A]'
                     }`}
                   />
                   {errors.company && (
-                    <span className="text-[11px] text-red-600 mt-1 flex items-center">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center">
                       <AlertCircle className="w-3 h-3 mr-1" /> {errors.company}
                     </span>
                   )}
@@ -233,8 +233,8 @@ export function QuoteDrawer({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
-                    Work Email <span className="text-red-500">*</span>
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
+                    Work Email <span className="text-[#00E5E5]">*</span>
                   </label>
                   <input
                     type="email"
@@ -242,20 +242,20 @@ export function QuoteDrawer({
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="name@company.com"
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                      errors.email ? 'border-red-500' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                      errors.email ? 'border-red-500' : 'border-[#41434A]'
                     }`}
                   />
                   {errors.email && (
-                    <span className="text-[11px] text-red-600 mt-1 flex items-center">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center">
                       <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
-                    Phone Number <span className="text-red-500">*</span>
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
+                    Phone Number <span className="text-[#00E5E5]">*</span>
                   </label>
                   <input
                     type="tel"
@@ -263,12 +263,12 @@ export function QuoteDrawer({
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors ${
-                      errors.phone ? 'border-red-500' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5] transition-colors ${
+                      errors.phone ? 'border-red-500' : 'border-[#41434A]'
                     }`}
                   />
                   {errors.phone && (
-                    <span className="text-[11px] text-red-600 mt-1 flex items-center">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center">
                       <AlertCircle className="w-3 h-3 mr-1" /> {errors.phone}
                     </span>
                   )}
@@ -276,15 +276,15 @@ export function QuoteDrawer({
               </div>
 
               {/* Hardware Selection & Quantity */}
-              <div className="space-y-4 pt-2 border-t border-slate-200">
+              <div className="space-y-4 pt-2 border-t border-[#292D36]">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
                     Hardware of Interest
                   </label>
                   <select
                     value={formData.product}
                     onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-[#41434A] bg-[#050505] text-[#F5F5F7] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
                   >
                     <option value="DCN Edge Node (DCN-4R-W-24V)">DCN Edge Node (RS485 Edge Data Collector)</option>
                     <option value="Multi-Zone Heat Controller (HC-4Z-230V-SOP)">Multi-Zone Heat Controller (4-Zone Blanket Power &amp; Trip)</option>
@@ -295,7 +295,7 @@ export function QuoteDrawer({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
                       Estimated Quantity
                     </label>
                     <div className="grid grid-cols-2 gap-2">
@@ -306,8 +306,8 @@ export function QuoteDrawer({
                           onClick={() => setFormData({ ...formData, quantity: qty })}
                           className={`py-2 px-3 text-xs font-medium rounded-lg border transition-colors text-center ${
                             formData.quantity === qty
-                              ? 'bg-orange-50 border-orange-500 text-orange-700 font-bold'
-                              : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
+                              ? 'bg-[#00E5E5]/10 border-[#00E5E5] text-[#00E5E5] font-semibold'
+                              : 'bg-[#050505] border-[#292D36] text-[#C2C6D0] hover:border-[#41434A] hover:text-[#F5F5F7]'
                           }`}
                         >
                           {qty}
@@ -317,7 +317,7 @@ export function QuoteDrawer({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
                       Implementation Timeline
                     </label>
                     <div className="grid grid-cols-1 gap-1.5">
@@ -330,8 +330,8 @@ export function QuoteDrawer({
                           key={t.id}
                           className={`flex items-center px-3 py-1.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                             formData.timeline === t.id
-                              ? 'bg-orange-50 border-orange-500 text-orange-900 font-semibold'
-                              : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                              ? 'bg-[#00E5E5]/10 border-[#00E5E5] text-[#F5F5F7] font-medium'
+                              : 'border-[#292D36] bg-[#050505] text-[#C2C6D0] hover:border-[#41434A]'
                           }`}
                         >
                           <input
@@ -339,7 +339,7 @@ export function QuoteDrawer({
                             name="timeline"
                             checked={formData.timeline === t.id}
                             onChange={() => setFormData({ ...formData, timeline: t.id })}
-                            className="text-orange-600 focus:ring-orange-500 mr-2"
+                            className="accent-[#00E5E5] mr-2"
                           />
                           <span>{t.label}</span>
                         </label>
@@ -349,7 +349,7 @@ export function QuoteDrawer({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
                     Existing Controllers / Meters In Plant (Optional)
                   </label>
                   <input
@@ -357,15 +357,15 @@ export function QuoteDrawer({
                     value={formData.existingDevices}
                     onChange={(e) => setFormData({ ...formData, existingDevices: e.target.value })}
                     placeholder="e.g. Autonics TK4S, Selec MFM384, Schneider EM6400"
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-[#41434A] bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
                   />
-                  <span className="text-[11px] text-slate-500 mt-1 block">
+                  <span className="text-[11px] text-[#969DAA] mt-1 block">
                     Our engineers will verify pinout compatibility for your exact model numbers.
                   </span>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                  <label className="block text-xs font-medium text-[#C2C6D0] uppercase tracking-wide mb-1.5">
                     Technical Requirements / Notes
                   </label>
                   <textarea
@@ -373,17 +373,17 @@ export function QuoteDrawer({
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     placeholder="Mention number of heating zones, cable distances, or specific panel constraints..."
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-[#41434A] bg-[#050505] text-[#F5F5F7] placeholder:text-[#969DAA] focus:outline-none focus:border-[#00E5E5] focus:ring-1 focus:ring-[#00E5E5]"
                   />
                 </div>
               </div>
 
               {/* Submit CTA */}
-              <div className="pt-4 border-t border-slate-200 flex items-center justify-between gap-4">
+              <div className="pt-4 border-t border-[#292D36] flex items-center justify-between gap-4">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+                  className="px-4 py-2.5 text-xs font-medium text-[#C2C6D0] hover:text-[#F5F5F7] border border-[#41434A] rounded-lg hover:bg-[#151D2E] transition-colors"
                 >
                   Cancel
                 </button>
@@ -391,11 +391,11 @@ export function QuoteDrawer({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 inline-flex items-center justify-center px-6 py-2.5 bg-orange-600 hover:bg-orange-500 disabled:bg-orange-400 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-500"
+                  className="flex-1 inline-flex items-center justify-center px-6 py-2.5 bg-[#00E5E5] hover:bg-[#00E5E5]/90 disabled:opacity-50 text-black text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00E5E5]"
                 >
                   {submitting ? (
                     <span className="flex items-center">
-                      <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                      <span className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin mr-2" />
                       Submitting to Engineering...
                     </span>
                   ) : (
@@ -410,12 +410,12 @@ export function QuoteDrawer({
         </div>
 
         {/* Footer info strip */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between shrink-0">
+        <div className="p-4 bg-[#050505] border-t border-[#292D36] text-[11px] text-[#969DAA] flex items-center justify-between shrink-0">
           <div className="flex items-center space-x-1.5">
-            <MapPin className="w-3.5 h-3.5 text-orange-600" />
+            <MapPin className="w-3.5 h-3.5 text-[#00E5E5]" />
             <span>Vadodara, Gujarat, India</span>
           </div>
-          <span className="font-mono text-slate-400">Response within 24h</span>
+          <span className="font-mono text-[#969DAA]">Response within 24h</span>
         </div>
       </div>
     </div>

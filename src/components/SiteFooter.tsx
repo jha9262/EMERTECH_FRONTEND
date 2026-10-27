@@ -27,7 +27,7 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
           {/* Column 1: Company Profile */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-base shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#FF5A00] text-white flex items-center justify-center font-bold text-base shadow-sm">
                 ET
               </div>
               <div>

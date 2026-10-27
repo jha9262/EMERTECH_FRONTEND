@@ -13,23 +13,23 @@ interface AboutPageProps {
 
 export function AboutPage({ onNavigate }: AboutPageProps) {
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-16 pb-16 bg-[#050505] text-[#F5F5F7]">
       {/* Header */}
-      <section className="bg-white border-b border-slate-200 py-10 sm:py-14">
+      <section className="bg-[#020610] border-b border-[#292D36] py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <Breadcrumbs
-            dark={false}
+            dark={true}
             items={[{ label: 'About Us' }]}
             onNavigate={onNavigate}
           />
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-orange-600 font-bold mb-2 block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-bold mb-2 block">
               CORPORATE OVERVIEW
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-[#F5F5F7]">
               About Emertech Electronics
             </h1>
-            <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-[#C2C6D0] leading-relaxed font-light">
               Based in the industrial manufacturing hub of Vadodara, Gujarat, Emertech Electronics is an industrial hardware and software company delivering specialized hardware products and connected operational intelligence.
             </p>
           </div>
@@ -40,31 +40,31 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-2xl font-bold text-slate-900 leading-tight">
+            <h2 className="text-2xl font-light text-[#F5F5F7] leading-tight">
               Engineering Hardware. Connecting Intelligence.
             </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-[#C2C6D0] leading-relaxed">
               At Emertech Electronics, we focus on engineering hardware and software that solves real manufacturing friction. Founded with deep domain experience in industrial electronics, edge computing, and process automation, we believe in straightforward technology that works reliably without fragile external dependencies.
             </p>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Our engineering portfolio bridges two major business capabilities: <strong className="text-slate-900 font-semibold">Industrial Hardware</strong> centered on the DCN &amp; Heat Controller platform (featuring rugged ESP32 edge nodes and on-premises Single Board Computer servers), and <strong className="text-slate-900 font-semibold">Industrial Software Solutions</strong> spanning 9 dedicated platforms including Fluxora (IoT blade heating), Equipoise (blade balancing), Smolder (fire &amp; siren control), Postern (emergency door control), Clime (energy monitoring), Manifest (asset tracking), Foundry (production ERP), Herald (long-range gateway), and Census (video analytics).
+            <p className="text-sm text-[#C2C6D0] leading-relaxed">
+              Our engineering portfolio bridges two major business capabilities: <strong className="text-[#F5F5F7] font-semibold">Industrial Hardware</strong> centered on the DCN &amp; Heat Controller platform (featuring rugged ESP32 edge nodes and on-premises Single Board Computer servers), and <strong className="text-[#F5F5F7] font-semibold">Industrial Software Solutions</strong> spanning 9 dedicated platforms including Fluxora (IoT blade heating), Equipoise (blade balancing), Smolder (fire &amp; siren control), Postern (emergency door control), Clime (energy monitoring), Manifest (asset tracking), Foundry (production ERP), Herald (long-range gateway), and Census (video analytics).
             </p>
 
             <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                <span className="text-xs font-mono font-bold text-orange-600 uppercase block mb-1">
+              <div className="p-5 bg-[#0B101B] rounded-xl border border-[#292D36]">
+                <span className="text-xs font-mono font-bold text-[#00E5E5] uppercase block mb-1">
                   Offline-First Architecture
                 </span>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
                   Shop-floor systems cannot halt when external networks fluctuate. Our local servers and DCN nodes run 100% autonomously on your plant LAN.
                 </p>
               </div>
 
-              <div className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                <span className="text-xs font-mono font-bold text-orange-600 uppercase block mb-1">
+              <div className="p-5 bg-[#0B101B] rounded-xl border border-[#292D36]">
+                <span className="text-xs font-mono font-bold text-[#00E5E5] uppercase block mb-1">
                   Non-Invasive Integration
                 </span>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-[#C2C6D0] leading-relaxed">
                   We design edge hardware that interfaces with existing plant PID controllers without requiring costly rewiring or scrap of working panels.
                 </p>
               </div>
@@ -72,41 +72,41 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
           </div>
 
           {/* Right Column: Vadodara Operations Card */}
-          <div className="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 space-y-6">
+          <div className="lg:col-span-5 bg-[#0B101B] text-[#F5F5F7] rounded-2xl p-8 border border-[#292D36] space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-orange-600 flex items-center justify-center font-bold text-white text-lg">
+              <div className="w-10 h-10 rounded-lg bg-[#FF5A00] flex items-center justify-center font-bold text-white text-lg shadow-sm">
                 ET
               </div>
               <div>
-                <h3 className="font-bold text-base text-white">Emertech Electronics</h3>
-                <span className="text-xs font-mono text-slate-400">Engineering &amp; Manufacturing Center</span>
+                <h3 className="font-bold text-base text-[#F5F5F7]">Emertech Electronics</h3>
+                <span className="text-xs font-mono text-[#969DAA]">Engineering &amp; Manufacturing Center</span>
               </div>
             </div>
 
-            <div className="space-y-3.5 text-xs text-slate-300">
+            <div className="space-y-3.5 text-xs text-[#C2C6D0]">
               <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#00E5E5] mt-0.5 shrink-0" />
                 <span>Vadodara, Gujarat, India — Western India's premier heavy electrical and mechanical equipment hub.</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-orange-400 shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-white transition-colors underline-offset-2 hover:underline">
+                <Mail className="w-4 h-4 text-[#00E5E5] shrink-0" />
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-[#00E5E5] transition-colors underline-offset-2 hover:underline">
                   {COMPANY_INFO.email}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-orange-400 shrink-0" />
-                <a href={`tel:${COMPANY_INFO.phone.replace(/[\s-]/g, '')}`} className="hover:text-white transition-colors font-mono">
+                <Phone className="w-4 h-4 text-[#00E5E5] shrink-0" />
+                <a href={`tel:${COMPANY_INFO.phone.replace(/[\s-]/g, '')}`} className="hover:text-[#00E5E5] transition-colors font-mono">
                   {COMPANY_INFO.phone}
                 </a>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 space-y-2 text-xs">
-              <span className="text-slate-400 font-mono text-[11px] uppercase tracking-wide block">
+            <div className="pt-4 border-t border-[#292D36] space-y-2 text-xs">
+              <span className="text-[#00E5E5] font-mono text-[11px] uppercase tracking-wide block">
                 Engineering Approach
               </span>
-              <p className="text-slate-300 leading-relaxed text-[11px]">
+              <p className="text-[#969DAA] leading-relaxed text-[11px]">
                 Grounding every specification in verified engineering performance, avoiding vendor lock-in, and delivering production-ready hardware and software.
               </p>
             </div>
@@ -114,30 +114,24 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
         </div>
       </section>
 
-      {/* =========================================================================
-          MEET OUR TEAM SECTION
-          Heading: "Meet Our Team"
-          Supporting text: "Our team brings together expertise in software development, embedded systems, hardware engineering, and IoT development to build industrial technology solutions."
-          Subtle indicator: "15 Team Members"
-          Six specified profile cards
-          ========================================================================= */}
-      <section className="bg-slate-100/70 border-y border-slate-200 py-18">
+      {/* MEET OUR TEAM SECTION */}
+      <section className="bg-[#080D18] border-y border-[#292D36] py-18">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center space-x-3">
-                <span className="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold block">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#00E5E5] font-bold block">
                   Our People
                 </span>
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200/80 text-slate-700 border border-slate-300">
-                  <Users className="w-3 h-3 mr-1.5 text-orange-600" />
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#0B101B] text-[#C2C6D0] border border-[#292D36]">
+                  <Users className="w-3 h-3 mr-1.5 text-[#00E5E5]" />
                   {TOTAL_TEAM_SIZE} Team Members
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-[#F5F5F7]">
                 Meet Our Team
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed font-normal">
+              <p className="text-sm text-[#C2C6D0] leading-relaxed font-light">
                 Our team brings together expertise in software development, embedded systems, hardware engineering, and IoT development to build industrial technology solutions.
               </p>
             </div>
@@ -148,44 +142,44 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
             {TEAM_MEMBERS.map((member) => (
               <div
                 key={member.name}
-                className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs hover:border-slate-300 hover:shadow-2xs transition-all flex flex-col justify-between"
+                className="bg-[#0B101B] rounded-xl border border-[#292D36] p-6 shadow-sm hover:border-[#00E5E5]/60 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between mb-4">
                     {/* Tasteful Initials-Based Avatar */}
-                    <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-base tracking-wider border border-slate-800 shadow-2xs group-hover:border-orange-500 transition-colors">
-                      <span className="text-orange-400 font-mono">{member.initials}</span>
+                    <div className="w-12 h-12 rounded-xl bg-[#050505] text-[#00E5E5] flex items-center justify-center font-bold text-base tracking-wider border border-[#292D36] shadow-sm">
+                      <span className="font-mono">{member.initials}</span>
                     </div>
 
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/80">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#00E5E5] bg-[#00E5E5]/10 px-2 py-0.5 rounded border border-[#00E5E5]/20">
                       {member.discipline}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 tracking-tight">
+                  <h3 className="text-base font-bold text-[#F5F5F7] tracking-tight">
                     {member.name}
                   </h3>
-                  <p className="text-xs font-medium text-slate-600 mt-1">
+                  <p className="text-xs font-medium text-[#969DAA] mt-1">
                     {member.designation}
                   </p>
                 </div>
 
                 {/* Email link for CTO Dishant Shah */}
                 {member.email ? (
-                  <div className="mt-5 pt-4 border-t border-slate-100">
+                  <div className="mt-5 pt-4 border-t border-[#292D36]">
                     <a
                       href={`mailto:${member.email}`}
-                      className="inline-flex items-center text-xs font-medium text-orange-600 hover:text-orange-700 transition-colors group"
+                      className="inline-flex items-center text-xs font-medium text-[#00E5E5] hover:underline transition-colors group"
                       title={`Send email to ${member.name}`}
                     >
-                      <Mail className="w-3.5 h-3.5 mr-1.5 text-orange-500 shrink-0" />
-                      <span className="truncate underline underline-offset-2 decoration-orange-300 group-hover:decoration-orange-600 font-mono text-[11px]">
+                      <Mail className="w-3.5 h-3.5 mr-1.5 text-[#00E5E5] shrink-0" />
+                      <span className="truncate font-mono text-[11px]">
                         {member.email}
                       </span>
                     </a>
                   </div>
                 ) : (
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center text-[11px] text-slate-400 font-mono">
+                  <div className="mt-5 pt-4 border-t border-[#292D36] flex items-center text-[11px] text-[#969DAA] font-mono">
                     <span>Emertech Electronics</span>
                   </div>
                 )}
@@ -194,11 +188,11 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
           </div>
 
           {/* Note on overall team strength */}
-          <div className="bg-white rounded-xl p-5 border border-slate-200 text-xs text-slate-500 flex items-center justify-between flex-wrap gap-3">
+          <div className="bg-[#0B101B] rounded-xl p-5 border border-[#292D36] text-xs text-[#C2C6D0] flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+              <span className="w-2 h-2 rounded-full bg-[#00E5E5] shrink-0" />
               <span>
-                Backed by a dedicated <strong>15-member team</strong> across core engineering, firmware, shop-floor fabrication, and quality assurance in Vadodara.
+                Backed by a dedicated <strong className="text-[#F5F5F7]">15-member team</strong> across core engineering, firmware, shop-floor fabrication, and quality assurance in Vadodara.
               </span>
             </div>
             <a
@@ -207,7 +201,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
                 e.preventDefault();
                 onNavigate('/contact/');
               }}
-              className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center"
+              className="text-xs font-semibold text-[#00E5E5] hover:underline inline-flex items-center"
             >
               <span>Get in Touch with Our Team</span>
               <ExternalLink className="w-3.5 h-3.5 ml-1" />

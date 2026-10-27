@@ -14,27 +14,27 @@ export function SoftwarePage({ onNavigate }: SoftwarePageProps) {
   return (
     <div className="space-y-16 pb-16">
       {/* Top Header & Breadcrumbs */}
-      <section className="bg-white border-b border-slate-200 py-10 sm:py-14">
+      <section className="bg-[#020610] border-b border-[#292D36] py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <Breadcrumbs
-            dark={false}
+            dark={true}
             items={[{ label: 'Software' }]}
             onNavigate={onNavigate}
           />
 
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-orange-600 font-bold block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-semibold block">
               SOFTWARE PLATFORMS &amp; INDUSTRIAL IOT
             </span>
 
             <h1 
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#F5F5F7] leading-tight"
               style={{ textWrap: 'balance' }}
             >
-              Software That Connects Industrial Operations
+              Software That <span className="epam-gradient-text font-normal">Connects Industrial Operations</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#C2C6D0] leading-relaxed">
               Explore Emertech's software solutions for industrial monitoring, process control, safety, energy, asset visibility, communication, and production management.
             </p>
 
@@ -45,7 +45,7 @@ export function SoftwarePage({ onNavigate }: SoftwarePageProps) {
                   e.preventDefault();
                   onNavigate('/contact/');
                 }}
-                className="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg transition-colors shadow-sm whitespace-nowrap"
+                className="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-[#00E5E5] hover:bg-[#00E5E5]/90 rounded-lg transition-colors font-medium shadow-sm whitespace-nowrap"
               >
                 <span>Request Software Demo</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -56,7 +56,7 @@ export function SoftwarePage({ onNavigate }: SoftwarePageProps) {
                   e.preventDefault();
                   onNavigate('/solutions/');
                 }}
-                className="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] hover:text-[#00E5E5] bg-[#050505] hover:bg-[#080D18] border border-[#41434A] rounded-lg transition-colors whitespace-nowrap"
               >
                 <span>View Operational Solutions</span>
               </a>
@@ -79,50 +79,50 @@ export function SoftwarePage({ onNavigate }: SoftwarePageProps) {
 
       {/* Architecture Synergy Callout */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-2xl p-8 sm:p-10 border border-slate-800 shadow-xl space-y-6">
+        <div className="bg-[#0B101B] text-[#F5F5F7] rounded-2xl p-8 sm:p-10 border border-[#292D36] shadow-xl space-y-6">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-[#050505] text-[#00E5E5] border border-[#292D36] flex items-center justify-center font-bold">
               <Cpu className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-mono uppercase text-orange-400 font-bold block">
+              <span className="text-xs font-mono uppercase text-[#00E5E5] font-semibold block">
                 Edge Architecture
               </span>
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-bold text-[#F5F5F7]">
                 Offline-First Reliability &amp; Plant LAN Deployment
               </h3>
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-[#C2C6D0] leading-relaxed max-w-3xl">
             Emertech's software platforms are designed for the realities of industrial plants. Where cloud connectivity can be unpredictable or prohibited due to data sovereignty, platforms like Fluxora run on local, ruggedized Single Board Computers (SBC) directly on your plant LAN—guaranteeing continuous operation, zero latency, and local cryptographic security.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
-            <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800">
-              <div className="flex items-center space-x-2 text-orange-400 font-bold mb-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36]">
+              <div className="flex items-center space-x-2 text-[#00E5E5] font-bold mb-1">
+                <ShieldCheck className="w-4 h-4 text-[#00E5E5]" />
                 <span>Zero Cloud Dependency</span>
               </div>
-              <p className="text-slate-400 text-[11px] leading-relaxed">
+              <p className="text-[#969DAA] text-[11px] leading-relaxed">
                 Local database and application runtime ensure 100% manufacturing uptime during internet outages.
               </p>
             </div>
-            <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800">
-              <div className="flex items-center space-x-2 text-orange-400 font-bold mb-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36]">
+              <div className="flex items-center space-x-2 text-[#00E5E5] font-bold mb-1">
+                <ShieldCheck className="w-4 h-4 text-[#00E5E5]" />
                 <span>Role-Based Permissions</span>
               </div>
-              <p className="text-slate-400 text-[11px] leading-relaxed">
+              <p className="text-[#969DAA] text-[11px] leading-relaxed">
                 Operator, Supervisor, and Maintenance tiers with password-protected recipe and override authority.
               </p>
             </div>
-            <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800">
-              <div className="flex items-center space-x-2 text-orange-400 font-bold mb-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36]">
+              <div className="flex items-center space-x-2 text-[#00E5E5] font-bold mb-1">
+                <ShieldCheck className="w-4 h-4 text-[#00E5E5]" />
                 <span>Standardized Export</span>
               </div>
-              <p className="text-slate-400 text-[11px] leading-relaxed">
+              <p className="text-[#969DAA] text-[11px] leading-relaxed">
                 Direct export to Microsoft Excel (.xlsx) and Adobe PDF (.pdf) for QA inspection and certification.
               </p>
             </div>

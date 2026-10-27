@@ -107,21 +107,21 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
   return (
     <div className="space-y-16 pb-16">
       {/* Header */}
-      <section className="bg-white border-b border-slate-200 py-10 sm:py-14">
+      <section className="bg-[#020610] border-b border-[#292D36] py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <Breadcrumbs
-            dark={false}
+            dark={true}
             items={[{ label: 'Solutions' }]}
             onNavigate={onNavigate}
           />
           <div className="max-w-3xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-orange-600 font-bold mb-2 block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#00E5E5] font-semibold mb-2 block">
               OPERATIONAL ENGINEERING
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-              Industrial Solutions
+            <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-[#F5F5F7]">
+              Industrial <span className="epam-gradient-text font-normal">Solutions</span>
             </h1>
-            <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-[#C2C6D0] leading-relaxed">
               Explore how Emertech's hardware and software products address core operational challenges across industrial manufacturing, safety, process monitoring, and telemetry.
             </p>
           </div>
@@ -134,35 +134,35 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
           {solutions.map((sol, idx) => (
             <div
               key={sol.id}
-              className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs hover:border-slate-300 transition-colors"
+              className="bg-[#0B101B] rounded-2xl border border-[#292D36] p-6 sm:p-8 hover:border-[#41434A] transition-colors"
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="space-y-3 max-w-3xl">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 border border-orange-100">
+                    <div className="w-10 h-10 rounded-xl bg-[#050505] text-[#00E5E5] flex items-center justify-center shrink-0 border border-[#292D36]">
                       {getSoftwareIcon(sol.softwareSlug, 'w-5 h-5')}
                     </div>
                     <div>
-                      <span className="text-[11px] font-mono uppercase text-orange-600 font-bold block">
+                      <span className="text-[11px] font-mono uppercase text-[#00E5E5] font-semibold block">
                         Application 0{idx + 1}
                       </span>
-                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">
+                      <h2 className="text-lg sm:text-xl font-bold text-[#F5F5F7]">
                         {sol.title}
                       </h2>
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-slate-500 font-medium font-mono">
+                  <p className="text-xs sm:text-sm text-[#969DAA] font-medium font-mono">
                     {sol.subtitle}
                   </p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs text-slate-600 leading-relaxed">
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/70">
-                      <strong className="text-slate-900 block mb-1">Operational Challenge:</strong>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs text-[#C2C6D0] leading-relaxed">
+                    <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36]">
+                      <strong className="text-[#F5F5F7] block mb-1">Operational Challenge:</strong>
                       {sol.problem}
                     </div>
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/70">
-                      <strong className="text-slate-900 block mb-1">How It Works:</strong>
+                    <div className="bg-[#050505] p-4 rounded-xl border border-[#292D36]">
+                      <strong className="text-[#F5F5F7] block mb-1">How It Works:</strong>
                       {sol.howItWorks}
                     </div>
                   </div>
@@ -176,7 +176,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
                       e.preventDefault();
                       onNavigate(sol.route);
                     }}
-                    className="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-orange-600 hover:bg-orange-500 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+                    className="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-[#00E5E5] hover:bg-[#00E5E5]/90 rounded-lg transition-colors whitespace-nowrap shadow-xs"
                   >
                     <span>Explore {sol.softwareName}</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -189,9 +189,9 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
                         e.preventDefault();
                         onNavigate(sol.hardwareLink);
                       }}
-                      className="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap"
+                      className="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#F5F5F7] hover:text-[#00E5E5] bg-[#050505] hover:bg-[#080D18] border border-[#41434A] rounded-lg transition-colors whitespace-nowrap"
                     >
-                      <Cpu className="w-3.5 h-3.5 mr-1.5 text-slate-500" />
+                      <Cpu className="w-3.5 h-3.5 mr-1.5 text-[#00E5E5]" />
                       <span>View DCN Hardware</span>
                     </a>
                   )}
